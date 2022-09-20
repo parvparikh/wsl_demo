@@ -17,8 +17,7 @@ export const resources_volume = []
 export const resources_description = []
 export const resource_icon = []
 
-data = JSON.stringify(learnerdata)
-export const learners= [JSON.parse(data)]
+export let learners= []
 export const learner_x = []
 export const learner_y = []
 export const learners_polyline = []
@@ -26,12 +25,14 @@ export const learners_name = []
 export const learners_file_name = []
 export const learners_id = []
 export const topic_names = new Map();
+export const learner_icon = [] ; 
 
 export const loadResourceData = async (filename,subject)=>{
+ 
    data = JSON.stringify(resourceData)
    let t = JSON.parse(data)   
    resources = Object.values(t)
-   await loadTopicNames('LearneringObjects.json',1)
+  loadTopicNames('LearneringObjects.json',1)
    resources.forEach(resource => {
     resource_icon.push("📄")
     resource_x.push(resource["ld"]["x"])
@@ -97,16 +98,20 @@ export const getTop3 = (resource) =>{
 
 }
 
-const loadLearnerData = async(filename,subject)=>{
-    learners[subject].forEach(learner => {
-        learner_x.push([learner["ld"]["x"]])
-        learner_y.push([learner["ld"]["y"]])
+export const loadLearnerData = async(filename,subject)=>{
+  data = learnerdata;
+  
+  learners = Object.values(data);
+  
+    learners.forEach(learner => {
+        learner_icon.push("👤");
+        learner_x.push(learner["ld"]["x"])
+        learner_y.push(learner["ld"]["y"])
         learners_polyline.push({ [learner["Learner Id"]]: learner["polyline"]})
-        learners_name.push([ learner["name"]])
-        learners_file_name.push([ learner["file name"]])
-        learners_id.push([learner["Learner Id"]])
-        
+        learners_file_name.push( learner["file name"])
+        learners_id.push(learner["Learner Id"])
        });
+       
      
 }
 const learnerResourceMapping = (subject)=>{

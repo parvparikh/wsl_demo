@@ -8,8 +8,10 @@ const Mainpage = () => {
   const [hide, setHide] = useState("true");
   const [data, setData] = useState(null);
   const [top3, setTop3] = useState(null);
+  const [typeOfData, setTypeOfData] = useState("learner");
   const handler = (x, y, resources) => {
     setHide("false");
+    console.log(resources);
     for (let i = 0; i < resources.length; i++) {
       if (resources[i]["ld"]["x"] === x && resources[i]["ld"]["y"] === y) {
         setData(resources[i]);
@@ -20,12 +22,19 @@ const Mainpage = () => {
   const handler2 = () => {
     setHide("true");
   };
+
   return (
     <>
       <Heading />
       <div className="flex">
-        <Main handler={handler} />
-        <Sidebar hide={hide} data={data} back_handler={handler2} top3={top3} />
+        <Main handler={handler} type={typeOfData} />
+        <Sidebar
+          hide={hide}
+          data={data}
+          back_handler={handler2}
+          top3={top3}
+          type={typeOfData}
+        />
       </div>
     </>
   );

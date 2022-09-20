@@ -1,11 +1,25 @@
 import React, { useEffect } from "react";
+import { useState } from "react";
 import Plot from "react-plotly.js";
 import * as api from "../../../data/api.js";
-import { useState } from "react";
 const Main = (props) => {
+  const [x, setX] = useState(
+    props.type === "learner" ? api.learner_x : api.resource_x
+  );
+  const [y, setY] = useState(
+    props.type === "learner" ? api.learner_y : api.resource_y
+  );
+  const [icon, setIcon] = useState(
+    props.type === "learner" ? api.learner_icon : api.resource_icon
+  );
+  const [object, setObject] = useState();
   useEffect(() => {
     async function initialise() {
-      await api.loadResourceData();
+      if (props.type === "learner") {
+        await api.loadLearnerData();
+      } else {
+        await api.loadResourceData();
+      }
     }
     // Execute the created function directly
     initialise();
@@ -15,8 +29,8 @@ const Main = (props) => {
       <Plot
         data={[
           {
-            x: api.resource_x,
-            y: api.resource_y,
+            x: x,
+            y: y,
             type: "scatter",
             mode: "text",
             marker: {
@@ -28,7 +42,7 @@ const Main = (props) => {
               },
               symbol: "square-dot",
             },
-            text: api.resource_icon,
+            text: icon,
             hovertemplate: "Resource",
             textposition: "center",
             textfont: {
@@ -46,7 +60,11 @@ const Main = (props) => {
         }}
         config={{ responsive: true }}
         onClick={(data) => {
-          props.handler(data.points[0].x, data.points[0].y, api.resources);
+          props.handler(
+            data.points[0].x,
+            data.points[0].y,
+            props.type === "learner" ? api.learners : api.resources
+          );
         }}
       />
     </div>
