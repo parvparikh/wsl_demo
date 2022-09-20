@@ -74,9 +74,9 @@ const Sidebar = (props) => {
             <li className="mb-6">
               <div className="py-1 px-3 bg-gray-700 rounded text-white  flex items-center text-xs">
                 <ul>
-                  <li>1. {props.data ? props.data.polyline[0] : "Null"}</li>
-                  <li>2. {props.data ? props.data.polyline[1] : "Null"}</li>
-                  <li>3. {props.data ? props.data.polyline[2] : "Null"}</li>
+                  <li>1. {props.top3 ? props.top3[0] : "Null"}</li>
+                  <li>2. {props.top3 ? props.top3[1] : "Null"}</li>
+                  <li>3. {props.top3 ? props.top3[2] : "Null"}</li>
                 </ul>
               </div>
             </li>

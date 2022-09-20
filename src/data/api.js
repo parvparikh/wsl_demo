@@ -1,11 +1,13 @@
 import * as learnerdata from "./parsed_learner.json"
 import * as resourceData from "./resource.json"
+import * as resourceName from "./LearningObjects.json"
 //hardcoded need to change 
 const subject = 0 
 //add export later
 
 let data = [];
 export let resources = []
+export let learners_object = []; 
 export const resource_x = []
 export const resource_y = []
 export const resources_polyline = []
@@ -23,13 +25,13 @@ export const learners_polyline = []
 export const learners_name = []
 export const learners_file_name = []
 export const learners_id = []
-
+export const topic_names = new Map();
 
 export const loadResourceData = async (filename,subject)=>{
    data = JSON.stringify(resourceData)
    let t = JSON.parse(data)   
    resources = Object.values(t)
-  
+   await loadTopicNames('LearneringObjects.json',1)
    resources.forEach(resource => {
     resource_icon.push("📄")
     resource_x.push(resource["ld"]["x"])
@@ -41,9 +43,59 @@ export const loadResourceData = async (filename,subject)=>{
     resources_description.push({[resource["name"]] : resource["resource_summary"]})
     
    });
+   
   
 }
+export const loadTopicNames = (filename,subject) =>{
+   data = JSON.stringify(resourceName)
+   let t = JSON.parse(data)   
+    learners_object= Object.values(t)
+    learners_object.forEach(rname=>{
+        topic_names.set(rname.topic_id,rname.name);
+    })
 
+
+}
+export const getTop3 = (resource) =>{
+     loadTopicNames('LearneringObjects.json',1)
+    let temp = [];
+    let t2 = [];
+    for(const prop in resource.polyline){
+        t2.push(resource.polyline[prop]);
+    }
+    let t3 = [...t2];
+    t2.sort();
+    t2.reverse(); 
+  // need optimisation
+  for (let i = 0; i < t2.length; i++) {
+    if (t3[i] == t2[0]) {
+      temp.push(i);
+    }
+  }
+  for (let i = 0; i <t2.length; i++) {
+    if (t3[i] == t2[1]) {
+      temp.push(i);
+    }
+  }
+  for (let i = 0; i < t2.length; i++) {
+    if (t3[i] == t2[2]) {
+      temp.push(i);
+    }
+  }
+  
+  // temp[0] = topic_names[temp[0]];
+  // temp[1] = topic_names[temp[1]];
+  // temp[2] = topic_names[temp[2]];
+  console.log(temp);
+  // console.log(topic_names)
+  let finalAns = [];
+  finalAns.push(topic_names.get(temp[0].toString()));
+  finalAns.push(topic_names.get(temp[1].toString()));
+  finalAns.push(topic_names.get(temp[2].toString()));
+  return finalAns; 
+  
+
+}
 
 const loadLearnerData = async(filename,subject)=>{
     learners[subject].forEach(learner => {
@@ -89,6 +141,3 @@ const actualTerrainData = (subject) =>{
 
 
 
-
-// loadResourceData('Network_Science/resource.json',0)
-//loadLearnerData('Network_Science/learner.json',0)
