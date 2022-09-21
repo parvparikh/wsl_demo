@@ -1,9 +1,10 @@
 import React from "react";
 
-const Heading = () => {
+const Heading = (props) => {
   return (
-    <div className="flex flex-relative items-center justify-center font-roboto font-extrabold text-2xl py-2">
-      Resource Map for Network Science of Web
+    <div className="flex flex-relative items-center justify-center font-roboto font-extrabold text-2xl ">
+      {props.type === "learner" ? "Learner's" : "Resource"} Map for Network
+      Science of Web
     </div>
   );
 };

@@ -3,16 +3,9 @@ import { useState } from "react";
 import Plot from "react-plotly.js";
 import * as api from "../../../data/api.js";
 const Main = (props) => {
-  const [x, setX] = useState(
-    props.type === "learner" ? api.learner_x : api.resource_x
-  );
-  const [y, setY] = useState(
-    props.type === "learner" ? api.learner_y : api.resource_y
-  );
-  const [icon, setIcon] = useState(
-    props.type === "learner" ? api.learner_icon : api.resource_icon
-  );
-  const [object, setObject] = useState();
+  let x = props.type === "learner" ? api.learner_x : api.resource_x;
+  let y = props.type === "learner" ? api.learner_y : api.resource_y;
+  let icon = props.type === "learner" ? api.learner_icon : api.resource_icon;
   useEffect(() => {
     async function initialise() {
       if (props.type === "learner") {
@@ -23,7 +16,7 @@ const Main = (props) => {
     }
     // Execute the created function directly
     initialise();
-  }, []);
+  }, [props.type]);
   return (
     <div className="flex relative items-center justify-center w-full ">
       <Plot
