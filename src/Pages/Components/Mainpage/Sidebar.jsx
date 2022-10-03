@@ -45,7 +45,7 @@ const Sidebar = (props) => {
               </div>
             </li>
             <li className="mb-6">
-              <div className="py-1 px-3 bg-gray-700 rounded text-white flex items-center justify-center text-xs">
+              <div className="overflow-scroll break-all py-1 px-3 bg-white rounded text-black flex items-center justify-center text-xs">
                 {props.data
                   ? props.type === "learner"
                     ? props.data["Learner Id"]
@@ -78,7 +78,7 @@ const Sidebar = (props) => {
               </div>
             </li>
             <li className="mb-6">
-              <div className="py-1 px-3 bg-gray-700 rounded text-white  flex items-center text-xs">
+              <div className="py-1 px-3 bg-white rounded text-black  flex items-center text-xs">
                 <ul>
                   <li>1. {props.top3 ? props.top3[0] : "Null"}</li>
                   <li>2. {props.top3 ? props.top3[1] : "Null"}</li>
@@ -113,7 +113,7 @@ const Sidebar = (props) => {
                   </div>
                 </li>
                 <li className="mb-6">
-                  <div className="py-1 px-3 bg-gray-700 rounded text-white flex items-center justify-center text-xs">
+                  <div className="py-1 px-3 bg-white rounded text-black flex items-center justify-center text-xs">
                     {props.data ? props.data.resource_summary : "Null"}
                   </div>
                 </li>
@@ -140,7 +140,7 @@ const Sidebar = (props) => {
                   </div>
                 </li>
                 <li className="mb-6">
-                  <div className="py-1 px-3 bg-gray-700 rounded text-white flex items-center justify-center text-xs">
+                  <div className="py-1 px-3 bg-white rounded text-black flex items-center justify-center text-xs">
                     {props.data ? props.data.resource_type : "Null"}
                   </div>
                 </li>

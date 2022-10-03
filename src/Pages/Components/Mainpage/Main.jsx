@@ -10,7 +10,7 @@ const Main = (props) => {
     async function initialise() {
       if (props.type === "learner") {
         await api.loadLearnerData();
-      } else {
+      } else if (props.type === "resource") {
         await api.loadResourceData();
       }
     }
