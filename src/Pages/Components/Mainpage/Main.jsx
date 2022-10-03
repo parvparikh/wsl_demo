@@ -16,9 +16,9 @@ const Main = (props) => {
     }
     // Execute the created function directly
     initialise();
-  }, [props.type]);
+  }, [props.type, x, y, icon]);
   return (
-    <div className="flex relative items-center justify-center w-full ">
+    <div className="grow">
       <Plot
         data={[
           {
@@ -44,13 +44,13 @@ const Main = (props) => {
           },
         ]}
         layout={{
-          width: 1200,
-          height: 700,
+          autosize: true,
           showlegend: false,
           paper_bgcolor: "D9D9D9",
           plot_bgcolor: "#FF65",
           orientation: "h",
         }}
+        useResizeHandler={true}
         config={{ responsive: true }}
         onClick={(data) => {
           props.handler(
@@ -58,6 +58,10 @@ const Main = (props) => {
             data.points[0].y,
             props.type === "learner" ? api.learners : api.resources
           );
+        }}
+        style={{
+          width: "100%",
+          height: "100%",
         }}
       />
     </div>

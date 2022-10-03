@@ -10,7 +10,7 @@ const Mainpage = () => {
   const [hide, setHide] = useState("true");
   const [data, setData] = useState(null);
   const [top3, setTop3] = useState(null);
-  const [typeOfData, setTypeOfData] = useState("learner");
+  const [typeOfData, setTypeOfData] = useState("");
   const navHandler = (toSet) => {
     setHide("true");
     setTypeOfData(toSet);
@@ -34,15 +34,17 @@ const Mainpage = () => {
       <Navbar type={typeOfData} handler={navHandler} />
       <Heading type={typeOfData} />
 
-      <div className="flex">
-        <Main handler={handler} type={typeOfData} />
-        <Sidebar
-          hide={hide}
-          data={data}
-          back_handler={handler2}
-          top3={top3}
-          type={typeOfData}
-        />
+      <div className="flex w-full h-full  justify-between">
+        <Main handler={handler} type={typeOfData} className="" />
+        <div className="flex flex-col justify-center ">
+          <Sidebar
+            hide={hide}
+            data={data}
+            back_handler={handler2}
+            top3={top3}
+            type={typeOfData}
+          />
+        </div>
       </div>
     </>
   );
