@@ -5,6 +5,7 @@ import { getTop3 } from "../data/api.js";
 import Heading from "./Components/Mainpage/Heading.jsx";
 import Main from "./Components/Mainpage/Main.jsx";
 import Navbar from "./Components/Mainpage/Navbar.jsx";
+import Polyline from "./Components/Mainpage/Polyline.jsx";
 import Sidebar from "./Components/Mainpage/Sidebar.jsx";
 const Mainpage = () => {
   const [hide, setHide] = useState("true");
@@ -22,6 +23,7 @@ const Mainpage = () => {
       if (resources[i]["ld"]["x"] === x && resources[i]["ld"]["y"] === y) {
         setData(resources[i]);
         setTop3(getTop3(resources[i]));
+        console.log(data);
       }
     }
   };
@@ -33,7 +35,6 @@ const Mainpage = () => {
     <>
       <Navbar type={typeOfData} handler={navHandler} />
       <Heading type={typeOfData} />
-
       <div className="flex w-full h-full  justify-between">
         <Main handler={handler} type={typeOfData} className="" />
         <div className="flex flex-col justify-center ">
@@ -45,6 +46,9 @@ const Mainpage = () => {
             type={typeOfData}
           />
         </div>
+      </div>
+      <div className="flex   justify-between">
+        <Polyline data={data} hide={hide} type={typeOfData} />
       </div>
     </>
   );

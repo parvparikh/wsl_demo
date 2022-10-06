@@ -28,6 +28,7 @@ export const topic_names = new Map();
 export const learner_icon = [] ; 
 
 export const loadResourceData = async (filename,subject)=>{
+  loadTopicNames('LearneringObjects.json',1)
  
    data = JSON.stringify(resourceData)
    let t = JSON.parse(data)   
@@ -58,7 +59,7 @@ export const loadTopicNames = (filename,subject) =>{
 
 }
 export const getTop3 = (resource) =>{
-     loadTopicNames('LearneringObjects.json',1)
+    loadTopicNames('LearneringObjects.json',1)
     let temp = [];
     let t2 = [];
     for(const prop in resource.polyline){
@@ -99,6 +100,7 @@ export const getTop3 = (resource) =>{
 }
 
 export const loadLearnerData = async(filename,subject)=>{
+  loadTopicNames('LearneringObjects.json',1)
   data = learnerdata;
   
   learners = Object.values(data);
