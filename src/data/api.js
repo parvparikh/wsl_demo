@@ -24,7 +24,7 @@ export const learners_polyline = []
 export const learners_name = []
 export const learners_file_name = []
 export const learners_id = []
-export const topic_names = new Map();
+export let topic_names = new Map();
 export const learner_icon = [] ; 
 
 export const loadResourceData = async (filename,subject)=>{
@@ -55,7 +55,13 @@ export const loadTopicNames = (filename,subject) =>{
     learners_object.forEach(rname=>{
         topic_names.set(rname.topic_id,rname.name);
     })
-
+    console.log(topic_names)
+    let topic_names2 = [...topic_names.entries()].sort(function(a,b){
+      return a[0]-b[0];
+    }); 
+    console.log(topic_names2)
+    topic_names = new Map(topic_names2);
+    console.log(topic_names)
 
 }
 export const getTop3 = (resource) =>{
