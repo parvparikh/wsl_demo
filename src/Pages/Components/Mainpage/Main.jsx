@@ -3,46 +3,72 @@ import { useState } from "react";
 import Plot from "react-plotly.js";
 import * as api from "../../../data/api.js";
 const Main = (props) => {
-  let x = props.type === "learner" ? api.learner_x : api.resource_x;
-  let y = props.type === "learner" ? api.learner_y : api.resource_y;
-  let icon = props.type === "learner" ? api.learner_icon : api.resource_icon;
+  let data = [];
+
   useEffect(() => {
     async function initialise() {
-      if (props.type === "learner") {
-        await api.loadLearnerData();
-      } else if (props.type === "resource") {
-        await api.loadResourceData();
-      }
+      // await api.loadLearnerData();
+      // await api.loadResourceData();
+      Promise.all([api.loadLearnerData(), api.loadResourceData()]);
     }
     // Execute the created function directly
     initialise();
-  }, [props.type, x, y, icon]);
+  }, [data]);
+
+  let learner_plot = {
+    x: api.learner_x,
+    y: api.learner_y,
+    type: "scatter",
+    mode: "text",
+    marker: {
+      color: "green",
+      size: 12,
+      line: {
+        color: "white",
+        width: 2,
+      },
+      symbol: "square-dot",
+    },
+    text: api.learner_icon,
+    hovertemplate: "Learner",
+    textposition: "center",
+    textfont: {
+      size: 18,
+    },
+  };
+  let resource_plot = {
+    x: api.resource_x,
+    y: api.resource_y,
+    type: "scatter",
+    mode: "text",
+    marker: {
+      color: "green",
+      size: 12,
+      line: {
+        color: "white",
+        width: 2,
+      },
+      symbol: "square-dot",
+    },
+    text: api.resource_icon,
+    hovertemplate: "Resource",
+    textposition: "center",
+    textfont: {
+      size: 18,
+    },
+  };
+  for (let i = 0; i < props.type.length; i++) {
+    if (props.type[i] === "learner") {
+      data.push(learner_plot);
+    }
+    if (props.type[i] === "resource") {
+      data.push(resource_plot);
+    }
+  }
   return (
     <div className="grow">
       <Plot
-        data={[
-          {
-            x: x,
-            y: y,
-            type: "scatter",
-            mode: "text",
-            marker: {
-              color: "green",
-              size: 12,
-              line: {
-                color: "white",
-                width: 2,
-              },
-              symbol: "square-dot",
-            },
-            text: icon,
-            hovertemplate: "Resource",
-            textposition: "center",
-            textfont: {
-              size: 18,
-            },
-          },
-        ]}
+        data={data}
         layout={{
           autosize: true,
           showlegend: false,
@@ -53,10 +79,12 @@ const Main = (props) => {
         useResizeHandler={true}
         config={{ responsive: true }}
         onClick={(data) => {
+          console.log(data);
           props.handler(
             data.points[0].x,
             data.points[0].y,
-            props.type === "learner" ? api.learners : api.resources
+            data.points[0].text == "👤" ? api.learners : api.resources,
+            data.points[0].text == "👤" ? "learner" : "resource"
           );
         }}
         style={{

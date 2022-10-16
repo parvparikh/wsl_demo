@@ -6,8 +6,6 @@ const Polyline = (props) => {
     props.hide === "true"
       ? "hidden grow mx-auto px-8 h-5/6 w-full"
       : "grow px-8";
-
-  console.log(Array.from(api.topic_names.values()));
   return (
     <div className={css}>
       <Plot

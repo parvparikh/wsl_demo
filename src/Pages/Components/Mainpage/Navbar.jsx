@@ -1,22 +1,44 @@
 import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 
 const Navbar = (props) => {
-  let default_css = "cursor-pointer";
-  let learners_css = "underline decoration-orange decoration-4 cursor-pointer";
+  const [selected, setSelected] = useState([]);
+  useEffect(() => {}, [selected]);
+  const handleChange = (e) => {
+    const { value, checked } = e.target;
+    console.log(value, " is value and checked is", checked);
+    if (checked) {
+      //check
+      setSelected([...selected, value]);
+      props.handler([...selected, value]);
+    } else {
+      let s = selected.filter((v) => v !== value);
+      setSelected(s);
+      props.handler([...s]);
+    }
+  };
   return (
-    <ul className="flex flex-relative items-center justify-center font-roboto font-extrabold text-xl py-2 gap-4">
-      <li
-        className={props.type === "learner" ? learners_css : default_css}
-        onClick={() => props.handler("learner")}
-      >
+    <ul className="flex flex-relative  mx-8 font-roboto font-extrabold text-xl py-2 gap-4">
+      <label>
         Learners
-      </li>
-      <li
-        className={props.type === "resource" ? learners_css : default_css}
-        onClick={() => props.handler("resource")}
-      >
+        <input
+          type="checkbox"
+          name="option"
+          value="learner"
+          onChange={handleChange}
+        ></input>
+      </label>
+
+      <label>
         Resources
-      </li>
+        <input
+          type="checkbox"
+          name="option"
+          value="resource"
+          onChange={handleChange}
+        ></input>
+      </label>
     </ul>
   );
 };

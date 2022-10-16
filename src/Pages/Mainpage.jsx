@@ -11,18 +11,20 @@ const Mainpage = () => {
   const [hide, setHide] = useState("true");
   const [data, setData] = useState(null);
   const [top3, setTop3] = useState(null);
-  const [typeOfData, setTypeOfData] = useState("");
+  const [typeOfData, setTypeOfData] = useState([]);
+  const [sideType, setSideType] = useState("");
   const navHandler = (toSet) => {
     setHide("true");
     setTypeOfData(toSet);
     console.log(toSet);
   };
-  const handler = (x, y, resources) => {
+  const handler = (x, y, resources, type) => {
     setHide("false");
     for (let i = 0; i < resources.length; i++) {
       if (resources[i]["ld"]["x"] === x && resources[i]["ld"]["y"] === y) {
         setData(resources[i]);
         setTop3(getTop3(resources[i]));
+        setSideType(type);
         console.log(data);
       }
     }
@@ -33,8 +35,8 @@ const Mainpage = () => {
   useEffect(() => {}, [typeOfData]);
   return (
     <>
-      <Navbar type={typeOfData} handler={navHandler} />
       <Heading type={typeOfData} />
+      <Navbar handler={navHandler} />
       <div className="flex w-full h-full  justify-between">
         <Main handler={handler} type={typeOfData} className="" />
         <div className="flex flex-col justify-center ">
@@ -43,12 +45,12 @@ const Mainpage = () => {
             data={data}
             back_handler={handler2}
             top3={top3}
-            type={typeOfData}
+            type={sideType}
           />
         </div>
       </div>
       <div className="flex   justify-between">
-        <Polyline data={data} hide={hide} type={typeOfData} />
+        <Polyline data={data} hide={hide} type={sideType} />
       </div>
     </>
   );

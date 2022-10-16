@@ -43,7 +43,6 @@ export const loadResourceData = async (filename,subject)=>{
     resources_type.push([ resource["type"]])
     resources_volume.push([ resource["resource_volume"] ])
     resources_description.push({[resource["name"]] : resource["resource_summary"]})
-    
    });
    
   
@@ -55,13 +54,13 @@ export const loadTopicNames = (filename,subject) =>{
     learners_object.forEach(rname=>{
         topic_names.set(rname.topic_id,rname.name);
     })
-    console.log(topic_names)
+
     let topic_names2 = [...topic_names.entries()].sort(function(a,b){
       return a[0]-b[0];
     }); 
-    console.log(topic_names2)
+ 
     topic_names = new Map(topic_names2);
-    console.log(topic_names)
+ 
 
 }
 export const getTop3 = (resource) =>{
