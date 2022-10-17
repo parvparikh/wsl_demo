@@ -57,6 +57,26 @@ const Main = (props) => {
       size: 18,
     },
   };
+  let start_point = {
+    x: [0],
+    y: [0],
+    type: "scatter",
+    mode: "markers+text",
+    marker: {
+      color: "green",
+      size: 20,
+      line: {
+        color: "white",
+        width: 2,
+      },
+      symbol: "square-dot",
+    },
+    text: ["START"],
+    textposition: "bottom",
+    textfont: {
+      size: 18,
+    },
+  };
   for (let i = 0; i < props.type.length; i++) {
     if (props.type[i] === "learner") {
       data.push(learner_plot);
@@ -65,6 +85,7 @@ const Main = (props) => {
       data.push(resource_plot);
     }
   }
+  data.push(start_point);
   return (
     <div className="grow">
       <Plot
