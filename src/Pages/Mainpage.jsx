@@ -35,7 +35,7 @@ const Mainpage = () => {
   useEffect(() => {}, [typeOfData]);
   return (
     <>
-      <Heading type={typeOfData} />
+      <Heading />
       <Navbar handler={navHandler} />
       <div className="flex w-full h-full  justify-between">
         <Main handler={handler} type={typeOfData} className="" />
