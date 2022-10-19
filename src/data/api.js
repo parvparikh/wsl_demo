@@ -17,6 +17,7 @@ export const resources_volume = []
 export const resources_description = []
 export const resource_icon = []
 
+export const learner_contribution = []
 export let learners= []
 export const learner_x = []
 export const learner_y = []
@@ -121,8 +122,8 @@ export const loadLearnerData = async(filename,subject)=>{
        
      
 }
-const learnerResourceMapping = (subject)=>{
-    const learner_contribution = [[]]
+export const learnerResourceMapping = (subject)=>{
+    
     for(let i = 0 ; i<learners[subject].length; i++){
         learner_contribution.push([]);
     }

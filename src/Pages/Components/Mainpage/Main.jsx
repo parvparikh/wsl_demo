@@ -3,18 +3,85 @@ import { useState } from "react";
 import Plot from "react-plotly.js";
 import * as api from "../../../data/api.js";
 const Main = (props) => {
-  let data = [];
+  let data = [
+    {
+      type: "scatter",
+      mode: "line",
+      name: "dot",
+      line: {
+        dash: "dot",
+        width: 4,
+      },
+      markerSize: 15,
+      x: [0, 0.5185185185185185],
+      y: [0, 1],
+      text: ["Name: Models of the Web"],
+    },
+    {
+      type: "scatter",
+      mode: "line",
+      name: "dot",
+      line: {
+        dash: "dot",
+        width: 4,
+      },
+      markerSize: 15,
+      x: [0, 1],
+      y: [0, 0.7407407407407407],
+      text: ["Name: Confirmatory Analytics"],
+    },
+    {
+      type: "scatter",
+      mode: "line",
+      name: "dot",
+      line: {
+        dash: "dot",
+        width: 4,
+      },
+      markerSize: 15,
+      x: [0, 0.8148148148148148],
+      y: [0, 1],
+      text: ["Name: Information diffusion models"],
+    },
+    {
+      type: "scatter",
+      mode: "line",
+      name: "dot",
+      line: {
+        dash: "dot",
+        width: 4,
+      },
+      markerSize: 15,
+      x: [0, 1],
+      y: [0, 0.5185185185185185],
+      text: ["Name: Estimating centrality measures for very large graphs"],
+    },
+    {
+      type: "scatter",
+      mode: "line",
+      name: "dot",
+      line: {
+        dash: "dot",
+        width: 4,
+      },
+      markerSize: 15,
+      x: [0, 0.37037037037037035],
+      y: [0, 1],
+      text: ["Name: Introduction to Network Science for the Web"],
+    },
+  ];
 
   useEffect(() => {
     async function initialise() {
       // await api.loadLearnerData();
       // await api.loadResourceData();
       Promise.all([api.loadLearnerData(), api.loadResourceData()]);
+      api.learnerResourceMapping(0);
     }
     // Execute the created function directly
     initialise();
   }, [data]);
-
+  console.log(api.learner_contribution);
   let learner_plot = {
     x: api.learner_x,
     y: api.learner_y,
