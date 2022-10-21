@@ -3,73 +3,7 @@ import { useState } from "react";
 import Plot from "react-plotly.js";
 import * as api from "../../../data/api.js";
 const Main = (props) => {
-  let data = [
-    {
-      type: "scatter",
-      mode: "line",
-      name: "dot",
-      line: {
-        dash: "dot",
-        width: 4,
-      },
-      markerSize: 15,
-      x: [0, 0.5185185185185185],
-      y: [0, 1],
-      text: ["Name: Models of the Web"],
-    },
-    {
-      type: "scatter",
-      mode: "line",
-      name: "dot",
-      line: {
-        dash: "dot",
-        width: 4,
-      },
-      markerSize: 15,
-      x: [0, 1],
-      y: [0, 0.7407407407407407],
-      text: ["Name: Confirmatory Analytics"],
-    },
-    {
-      type: "scatter",
-      mode: "line",
-      name: "dot",
-      line: {
-        dash: "dot",
-        width: 4,
-      },
-      markerSize: 15,
-      x: [0, 0.8148148148148148],
-      y: [0, 1],
-      text: ["Name: Information diffusion models"],
-    },
-    {
-      type: "scatter",
-      mode: "line",
-      name: "dot",
-      line: {
-        dash: "dot",
-        width: 4,
-      },
-      markerSize: 15,
-      x: [0, 1],
-      y: [0, 0.5185185185185185],
-      text: ["Name: Estimating centrality measures for very large graphs"],
-    },
-    {
-      type: "scatter",
-      mode: "line",
-      name: "dot",
-      line: {
-        dash: "dot",
-        width: 4,
-      },
-      markerSize: 15,
-      x: [0, 0.37037037037037035],
-      y: [0, 1],
-      text: ["Name: Introduction to Network Science for the Web"],
-    },
-  ];
+  let data = [];
 
   useEffect(() => {
     async function initialise() {
