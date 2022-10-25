@@ -4,6 +4,7 @@ import Plot from "react-plotly.js";
 import * as api from "../../../data/api.js";
 const Main = (props) => {
   let data = [];
+  let a1 = [], a2 = [];
 
   useEffect(() => {
     async function initialise() {
@@ -78,12 +79,99 @@ const Main = (props) => {
       size: 18,
     },
   };
+  let annots = [];
+  let annots_learner = [
+  {
+    x: 0.367,
+    y: 0.80,
+    xref: 'x',
+    yref: 'y',
+    text: 'M20147',
+    showarrow: false,              
+  },
+  {
+    x: 0.0708,
+    y: 0.5154,
+    xref: 'x',
+    yref: 'y',
+    text: 'M20091',
+    showarrow: false,              
+  },
+  {
+    x: 0.5627,
+    y: 0.341,
+    xref: 'x',
+    yref: 'y',
+    text: 'M20088',
+    showarrow: false,              
+  },
+  {
+    x: 0.3188,
+    y: 0.0976,
+    xref: 'x',
+    yref: 'y',
+    text: 'M20089',
+    showarrow: false,              
+  },
+  {
+    x: 0.8589,
+    y: 0.692,
+    xref: 'x',
+    yref: 'y',
+    text: 'M20047',
+    showarrow: false,              
+  }];
+  
+  let annots_resource = [
+  {
+    x: 0.2567,
+    y: 0.9380,
+    xref: 'x',
+    yref: 'y',
+    text: 'Retweet Graph.pdf',
+    showarrow: false,              
+  },
+  {
+    x: 0.2978,
+    y: 0.5644,
+    xref: 'x',
+    yref: 'y',
+    text: 'SEN5.pdf',
+    showarrow: false,              
+  },
+  {
+    x: 0.5787,
+    y: 0.8619,
+    xref: 'x',
+    yref: 'y',
+    text: 'Markov Chain.pdf',
+    showarrow: false,              
+  },
+  {
+    x: 0.7706,
+    y: 0.46599,
+    xref: 'x',
+    yref: 'y',
+    text: 'SEN9.pdf',
+    showarrow: false,              
+  },
+  {
+    x: 0.9548,
+    y: 0.1771,
+    xref: 'x',
+    yref: 'y',
+    text: 'Epidemics',
+    showarrow: false,              
+  }]
+
   for (let i = 0; i < props.type.length; i++) {
     if (props.type[i] === "learner") {
       data.push(learner_plot);
+      a1 = annots_learner;
     }
     if (props.type[i] === "resource") {
       data.push(resource_plot);
+      a2 = annots_resource;
     }
   }
   data.push(start_point);
@@ -97,6 +185,7 @@ const Main = (props) => {
           paper_bgcolor: "D9D9D9",
           plot_bgcolor: "#FF65",
           orientation: "h",
+          annotations: a1.concat(a2)
         }}
         useResizeHandler={true}
         config={{ responsive: true }}
