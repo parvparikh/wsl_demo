@@ -33,6 +33,7 @@ const Main = (props) => {
       symbol: "square-dot",
     },
     text: api.NSWlearner_icon,
+    name: api.NSWlearners_id,
     hovertemplate: "Learner",
     textposition: "center",
     textfont: {
@@ -54,6 +55,7 @@ const Main = (props) => {
       symbol: "square-dot",
     },
     text: api.NSWresource_icon,
+    name: api.NSWresources_name,
     hovertemplate: "Resource",
     textposition: "center",
     textfont: {
@@ -75,6 +77,7 @@ const Main = (props) => {
       symbol: "square-dot",
     },
     text: api.MLlearner_icon,
+    name: api.MLlearners_id,
     hovertemplate: "Learner",
     textposition: "center",
     textfont: {
@@ -96,6 +99,7 @@ const Main = (props) => {
       symbol: "square-dot",
     },
     text: api.MLresource_icon,
+    name: api.MLresources_name,
     hovertemplate: "Resource",
     textposition: "center",
     textfont: {
@@ -124,89 +128,136 @@ const Main = (props) => {
   };
   let annots = [];
   let annots_learner = [], annots_resource = [];
-  annots_learner = [
+  for(let i=0;i<5;i++)
   {
-    x: 0.367,
-    y: 0.80,
-    xref: 'x',
-    yref: 'y',
-    text: 'M20147',
-    showarrow: false,              
-  },
-  {
-    x: 0.0708,
-    y: 0.5154,
-    xref: 'x',
-    yref: 'y',
-    text: 'M20091',
-    showarrow: false,              
-  },
-  {
-    x: 0.5627,
-    y: 0.341,
-    xref: 'x',
-    yref: 'y',
-    text: 'M20088',
-    showarrow: false,              
-  },
-  {
-    x: 0.3188,
-    y: 0.0976,
-    xref: 'x',
-    yref: 'y',
-    text: 'M20089',
-    showarrow: false,              
-  },
-  {
-    x: 0.8589,
-    y: 0.692,
-    xref: 'x',
-    yref: 'y',
-    text: 'M20047',
-    showarrow: false,              
-  }];
+    if(props.course === "Network Science for Web")
+    {
+      let pos = Math.floor(Math.random()*NSWlearner_plot.x.length); 
+      annots_learner.push({
+        x: NSWlearner_plot.x[pos],
+        y: NSWlearner_plot.y[pos],
+        xref: 'x',
+        yref: 'y',
+        text: NSWlearner_plot.name[pos],
+        showarrow: false,
+      });
+      
+      pos = Math.floor(Math.random()*NSWresource_plot.x.length);
+      annots_resource.push({
+        x: NSWresource_plot.x[pos],
+        y: NSWresource_plot.y[pos],
+        xref: 'x',
+        yref: 'y',
+        text: NSWresource_plot.name[pos],
+        showarrow: false,
+      });
+    }
+    else if(props.course === "Machine Learning")
+    {
+      let pos = Math.floor(Math.random()*MLlearner_plot.x.length);
+      annots_learner.push({
+        x: MLlearner_plot.x[pos],
+        y: MLlearner_plot.y[pos],
+        xref: 'x',
+        yref: 'y',
+        text: MLlearner_plot.name[pos],
+        showarrow: false,
+      });
+
+      pos = Math.floor(Math.random()*MLresource_plot.x.length);
+      annots_resource.push({
+        x: MLresource_plot.x[pos],
+        y: MLresource_plot.y[pos],
+        xref: 'x',
+        yref: 'y',
+        text: MLresource_plot.name[pos],
+        showarrow: false,
+      });
+    }
+  }
+  // annots_learner = [
+  // {
+  //   x: 0.367,
+  //   y: 0.80,
+  //   xref: 'x',
+  //   yref: 'y',
+  //   text: 'M20147',
+  //   showarrow: false,              
+  // },
+  // {
+  //   x: 0.0708,
+  //   y: 0.5154,
+  //   xref: 'x',
+  //   yref: 'y',
+  //   text: 'M20091',
+  //   showarrow: false,              
+  // },
+  // {
+  //   x: 0.5627,
+  //   y: 0.341,
+  //   xref: 'x',
+  //   yref: 'y',
+  //   text: 'M20088',
+  //   showarrow: false,              
+  // },
+  // {
+  //   x: 0.3188,
+  //   y: 0.0976,
+  //   xref: 'x',
+  //   yref: 'y',
+  //   text: 'M20089',
+  //   showarrow: false,              
+  // },
+  // {
+  //   x: 0.8589,
+  //   y: 0.692,
+  //   xref: 'x',
+  //   yref: 'y',
+  //   text: 'M20047',
+  //   showarrow: false,              
+  // }];
   
-  annots_resource = [
-  {
-    x: 0.2567,
-    y: 0.9380,
-    xref: 'x',
-    yref: 'y',
-    text: 'Retweet Graph.pdf',
-    showarrow: false,              
-  },
-  {
-    x: 0.2978,
-    y: 0.5644,
-    xref: 'x',
-    yref: 'y',
-    text: 'SEN5.pdf',
-    showarrow: false,              
-  },
-  {
-    x: 0.5787,
-    y: 0.8619,
-    xref: 'x',
-    yref: 'y',
-    text: 'Markov Chain.pdf',
-    showarrow: false,              
-  },
-  {
-    x: 0.7706,
-    y: 0.46599,
-    xref: 'x',
-    yref: 'y',
-    text: 'SEN9.pdf',
-    showarrow: false,              
-  },
-  {
-    x: 0.9548,
-    y: 0.1771,
-    xref: 'x',
-    yref: 'y',
-    text: 'Epidemics',
-    showarrow: false,              
-  }]
+  // annots_resource = [
+  // {
+  //   x: 0.2567,
+  //   y: 0.9380,
+  //   xref: 'x',
+  //   yref: 'y',
+  //   text: 'Retweet Graph.pdf',
+  //   showarrow: false,              
+  // },
+  // {
+  //   x: 0.2978,
+  //   y: 0.5644,
+  //   xref: 'x',
+  //   yref: 'y',
+  //   text: 'SEN5.pdf',
+  //   showarrow: false,              
+  // },
+  // {
+  //   x: 0.5787,
+  //   y: 0.8619,
+  //   xref: 'x',
+  //   yref: 'y',
+  //   text: 'Markov Chain.pdf',
+  //   showarrow: false,              
+  // },
+  // {
+  //   x: 0.7706,
+  //   y: 0.46599,
+  //   xref: 'x',
+  //   yref: 'y',
+  //   text: 'SEN9.pdf',
+  //   showarrow: false,              
+  // },
+  // {
+  //   x: 0.9548,
+  //   y: 0.1771,
+  //   xref: 'x',
+  //   yref: 'y',
+  //   text: 'Epidemics',
+  //   showarrow: false,              
+  // }]
 
   for (let i = 0; i < props.type.length; i++) {
     if (props.type[i] === "learner") {
