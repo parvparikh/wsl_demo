@@ -13,6 +13,7 @@ const Mainpage = () => {
   const [top3, setTop3] = useState(null);
   const [typeOfData, setTypeOfData] = useState([]);
   const [sideType, setSideType] = useState("");
+  const [course, setCourse] = useState("Network Science for Web");
   const navHandler = (toSet) => {
     setHide("true");
     setTypeOfData(toSet);
@@ -32,13 +33,16 @@ const Mainpage = () => {
   const handler2 = () => {
     setHide("true");
   };
+  const courseHandler = (e) => {
+    setCourse(e.target.value);
+  }
   useEffect(() => {}, [typeOfData]);
   return (
     <>
-      <Heading />
-      <Navbar handler={navHandler} />
+      <Heading course={course}/>
+      <Navbar handler={navHandler} courseHandler={courseHandler}/>
       <div className="flex w-full h-full  justify-between">
-        <Main handler={handler} type={typeOfData} className="" />
+        <Main handler={handler} type={typeOfData} className="" course={course}/>
         <div className="flex flex-col justify-center ">
           <Sidebar
             hide={hide}

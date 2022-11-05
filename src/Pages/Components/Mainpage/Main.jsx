@@ -10,16 +10,17 @@ const Main = (props) => {
     async function initialise() {
       // await api.loadLearnerData();
       // await api.loadResourceData();
-      Promise.all([api.loadLearnerData(), api.loadResourceData()]);
+      Promise.all([api.NSWloadLearnerData(), api.NSWloadResourceData(), api.MLloadLearnerData(), api.MLloadResourceData()]);
       api.learnerResourceMapping(0);
     }
     // Execute the created function directly
     initialise();
   }, [data]);
-  console.log(api.learner_contribution);
-  let learner_plot = {
-    x: api.learner_x,
-    y: api.learner_y,
+  // console.log(api.NSWlearner_contribution);
+  // console.log("ML learner data", api.MLlearner_x);
+  let NSWlearner_plot = {
+    x: api.NSWlearner_x,
+    y: api.NSWlearner_y,
     type: "scatter",
     mode: "text",
     marker: {
@@ -31,16 +32,16 @@ const Main = (props) => {
       },
       symbol: "square-dot",
     },
-    text: api.learner_icon,
+    text: api.NSWlearner_icon,
     hovertemplate: "Learner",
     textposition: "center",
     textfont: {
       size: 18,
     },
   };
-  let resource_plot = {
-    x: api.resource_x,
-    y: api.resource_y,
+  let NSWresource_plot = {
+    x: api.NSWresource_x,
+    y: api.NSWresource_y,
     type: "scatter",
     mode: "text",
     marker: {
@@ -52,7 +53,49 @@ const Main = (props) => {
       },
       symbol: "square-dot",
     },
-    text: api.resource_icon,
+    text: api.NSWresource_icon,
+    hovertemplate: "Resource",
+    textposition: "center",
+    textfont: {
+      size: 18,
+    },
+  };
+  let MLlearner_plot = {
+    x: api.MLlearner_x,
+    y: api.MLlearner_y,
+    type: "scatter",
+    mode: "text",
+    marker: {
+      color: "green",
+      size: 12,
+      line: {
+        color: "white",
+        width: 2,
+      },
+      symbol: "square-dot",
+    },
+    text: api.MLlearner_icon,
+    hovertemplate: "Learner",
+    textposition: "center",
+    textfont: {
+      size: 18,
+    },
+  };
+  let MLresource_plot = {
+    x: api.MLresource_x,
+    y: api.MLresource_y,
+    type: "scatter",
+    mode: "text",
+    marker: {
+      color: "green",
+      size: 12,
+      line: {
+        color: "white",
+        width: 2,
+      },
+      symbol: "square-dot",
+    },
+    text: api.MLresource_icon,
     hovertemplate: "Resource",
     textposition: "center",
     textfont: {
@@ -80,7 +123,8 @@ const Main = (props) => {
     },
   };
   let annots = [];
-  let annots_learner = [
+  let annots_learner = [], annots_resource = [];
+  annots_learner = [
   {
     x: 0.367,
     y: 0.80,
@@ -122,7 +166,7 @@ const Main = (props) => {
     showarrow: false,              
   }];
   
-  let annots_resource = [
+  annots_resource = [
   {
     x: 0.2567,
     y: 0.9380,
@@ -166,12 +210,28 @@ const Main = (props) => {
 
   for (let i = 0; i < props.type.length; i++) {
     if (props.type[i] === "learner") {
-      data.push(learner_plot);
-      a1 = annots_learner;
+      if(props.course === "Network Science for Web")
+      {
+        data.push(NSWlearner_plot);
+        a1 = annots_learner;
+      }
+      else if(props.course === "Machine Learning")
+      {
+        data.push(MLlearner_plot);
+        a1 = annots_learner;
+      }
     }
     if (props.type[i] === "resource") {
-      data.push(resource_plot);
-      a2 = annots_resource;
+      if(props.course === "Network Science for Web")
+      {
+        data.push(NSWresource_plot);
+        a2 = annots_resource;
+      }
+      else if(props.course === "Machine Learning")
+      {
+        data.push(MLresource_plot);
+        a2 = annots_resource;
+      }
     }
   }
   data.push(start_point);
@@ -194,7 +254,7 @@ const Main = (props) => {
           props.handler(
             data.points[0].x,
             data.points[0].y,
-            data.points[0].text == "👤" ? api.learners : api.resources,
+            data.points[0].text == "👤" ? api.NSWlearners : api.NSWresources,
             data.points[0].text == "👤" ? "learner" : "resource"
           );
         }}

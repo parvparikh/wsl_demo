@@ -1,0 +1,164 @@
+[
+	{
+		"id": "r0",
+		"name": "name",
+		"type": "resource",
+		"resource_type": "pdf",
+		"resource_volume": 0,
+		"polyline": { "0": 5, "1": 5, "2": 5, "3": 5, "4": 6, "5": 6 },
+		"ld": {"x": 12.055343666311586, "y": 19.944656333647067}
+	},
+	{
+		"id": "r1",
+		"name": "name",
+		"type": "resource",
+		"resource_type": "pdf",
+		"resource_volume": 0,
+		"polyline": { "0": 5, "1": 3, "2": 5, "3": 3, "4": 5, "5": 5 },
+		"ld": {"x": 7.780263024273311, "y": 18.219736975725663}
+	},
+	{
+		"id": "r2",
+		"name": "name",
+		"type": "resource",
+		"resource_type": "pdf",
+		"resource_volume": 0,
+		"polyline": { "0": 6, "1": 4, "2": 6, "3": 5, "4": 5, "5": 5 },
+		"ld": {"x": 7.705352387209258, "y": 23.294647612773296}
+	},
+	{
+		"id": "r3",
+		"name": "name",
+		"type": "resource",
+		"resource_type": "pdf",
+		"resource_volume": 0,
+		"polyline": { "0": 6, "1": 4, "2": 6, "3": 4, "4": 6, "5": 5 },
+		"ld": {"x": 8.242358994115703, "y": 22.757641005866056}
+	},
+	{
+		"id": "r4",
+		"name": "name",
+		"type": "resource",
+		"resource_type": "pdf",
+		"resource_volume": 0,
+		"polyline": { "0": 6, "1": 5, "2": 5, "3": 4, "4": 6, "5": 6 },
+		"ld": {"x": 10.219102491276166, "y": 21.780897508692536}
+	},
+	{
+		"id": "r5",
+		"name": "name",
+		"type": "resource",
+		"resource_type": "pdf",
+		"resource_volume": 0,
+		"polyline": { "0": 5, "1": 5, "2": 6, "3": 5, "4": 6, "5": 6 },
+		"ld": {"x": 11.560190703218446, "y": 21.43980929674707}
+	},
+	{
+		"id": "r6",
+		"name": "name",
+		"type": "resource",
+		"resource_type": "pdf",
+		"resource_volume": 0,
+		"polyline": { "0": 5, "1": 5, "2": 5, "3": 5, "4": 6, "5": 6 },
+		"ld": {"x": 12.055343666311586, "y": 19.944656333647067}
+	},
+	{
+		"id": "r7",
+		"name": "name",
+		"type": "resource",
+		"resource_type": "pdf",
+		"resource_volume": 0,
+		"polyline": { "0": 5, "1": 5, "2": 6, "3": 5, "4": 7, "5": 7 },
+		"ld": {"x": 16.56407573020105, "y": 18.435924269848613}
+	},
+	{
+		"id": "r8",
+		"name": "name",
+		"type": "resource",
+		"resource_type": "pdf",
+		"resource_volume": 0,
+		"polyline": { "0": 6, "1": 6, "2": 6, "3": 5, "4": 7, "5": 6 },
+		"ld": {"x": 13.557086061399245, "y": 22.442913938595748}
+	},
+	{
+		"id": "r9",
+		"name": "name",
+		"type": "resource",
+		"resource_type": "pdf",
+		"resource_volume": 0,
+		"polyline": { "0": 6, "1": 4, "2": 6, "3": 4, "4": 6, "5": 6 },
+		"ld": {"x": 10.464172685222028, "y": 21.535827314745333}
+	},
+	{
+		"id": "r10",
+		"name": "name",
+		"type": "resource",
+		"resource_type": "pdf",
+		"resource_volume": 0,
+		"polyline": { "0": 5, "1": 5, "2": 6, "3": 4, "4": 6, "5": 5 },
+		"ld": {"x": 7.970569236519522, "y": 23.029430763462315}
+	},
+	{
+		"id": "r11",
+		"name": "name",
+		"type": "resource",
+		"resource_type": "pdf",
+		"resource_volume": 0,
+		"polyline": { "0": 6, "1": 5, "2": 6, "3": 4, "4": 6, "5": 6 },
+		"ld": {"x": 10.164048109223215, "y": 22.835951890749932}
+	},
+	{
+		"id": "r12",
+		"name": "name",
+		"type": "resource",
+		"resource_type": "pdf",
+		"resource_volume": 0,
+		"polyline": { "0": 5, "1": 4, "2": 5, "3": 4, "4": 5, "5": 5 },
+		"ld": {"x": 7.510833400960195, "y": 20.489166599014123}
+	},
+	{
+		"id": "r13",
+		"name": "name",
+		"type": "resource",
+		"resource_type": "pdf",
+		"resource_volume": 0,
+		"polyline": { "0": 6, "1": 5, "2": 6, "3": 4, "4": 6, "5": 5 },
+		"ld": {"x": 7.911222916500982, "y": 24.088777083480107}
+	},
+	{
+		"id": "r14",
+		"name": "name",
+		"type": "resource",
+		"resource_type": "pdf",
+		"resource_volume": 0,
+		"polyline": { "0": 5, "1": 4, "2": 5, "3": 5, "4": 7, "5": 6 },
+		"ld": {"x": 15.367848738122875, "y": 16.63215126181765}
+	},
+	{
+		"id": "r15",
+		"name": "name",
+		"type": "resource",
+		"resource_type": "pdf",
+		"resource_volume": 0,
+		"polyline": { "0": 5, "1": 5, "2": 6, "3": 5, "4": 6, "5": 6 },
+		"ld": {"x": 11.560190703218446, "y": 21.43980929674707}
+	},
+	{
+		"id": "r16",
+		"name": "name",
+		"type": "resource",
+		"resource_type": "pdf",
+		"resource_volume": 0,
+		"polyline": { "0": 5, "1": 4, "2": 5, "3": 6, "4": 6, "5": 6 },
+		"ld": {"x": 14.496307717269048, "y": 17.503692282676248}
+	},
+	{
+		"id": "r17",
+		"name": "name",
+		"type": "resource",
+		"resource_type": "pdf",
+		"resource_volume": 0,
+		"polyline": { "0": 5, "1": 5, "2": 5, "3": 5, "4": 5, "5": 6 },
+		"ld": {"x": 9.913192280233458, "y": 21.0868077197483}
+	}
+]

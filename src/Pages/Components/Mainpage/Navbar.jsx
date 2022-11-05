@@ -19,27 +19,33 @@ const Navbar = (props) => {
     }
   };
   return (
-    <ul className="flex flex-relative  mx-8 font-roboto font-extrabold text-xl py-2 gap-4">
-      <label>
-        Learners
-        <input
-          type="checkbox"
-          name="option"
-          value="learner"
-          onChange={handleChange}
-        ></input>
-      </label>
+    <div>
+      <ul className="flex flex-relative  mx-8 font-roboto font-extrabold text-xl py-2 gap-4">
+        <label>
+          Learners
+          <input
+            type="checkbox"
+            name="option"
+            value="learner"
+            onChange={handleChange}
+          ></input>
+        </label>
 
-      <label>
-        Resources
-        <input
-          type="checkbox"
-          name="option"
-          value="resource"
-          onChange={handleChange}
-        ></input>
-      </label>
-    </ul>
+        <label>
+          Resources
+          <input
+            type="checkbox"
+            name="option"
+            value="resource"
+            onChange={handleChange}
+          ></input>
+        </label>
+      </ul>
+      <select onChange={props.courseHandler} className="mx-8 font-roboto font-extrabold py-2 gap-4 bg-primary">
+        <option value="Network Science for Web">Network Science for Web</option>
+        <option value="Machine Learning">Machine Learning</option>
+      </select>
+    </div>
   );
 };
 
