@@ -4,13 +4,19 @@ import Plot from "react-plotly.js";
 import * as api from "../../../data/api.js";
 const Main = (props) => {
   let data = [];
-  let a1 = [], a2 = [];
+  let a1 = [],
+    a2 = [];
 
   useEffect(() => {
     async function initialise() {
       // await api.loadLearnerData();
       // await api.loadResourceData();
-      Promise.all([api.NSWloadLearnerData(), api.NSWloadResourceData(), api.MLloadLearnerData(), api.MLloadResourceData()]);
+      Promise.all([
+        api.NSWloadLearnerData(),
+        api.NSWloadResourceData(),
+        api.MLloadLearnerData(),
+        api.MLloadResourceData(),
+      ]);
       api.learnerResourceMapping(0);
     }
     // Execute the created function directly
@@ -127,49 +133,46 @@ const Main = (props) => {
     },
   };
   let annots = [];
-  let annots_learner = [], annots_resource = [];
-  for(let i=0;i<5;i++)
-  {
-    if(props.course === "Network Science for Web")
-    {
-      let pos = Math.floor(Math.random()*NSWlearner_plot.x.length); 
+  let annots_learner = [],
+    annots_resource = [];
+  for (let i = 0; i < 5; i++) {
+    if (props.course === "Network Science for Web") {
+      let pos = Math.floor(Math.random() * NSWlearner_plot.x.length);
       annots_learner.push({
         x: NSWlearner_plot.x[pos],
         y: NSWlearner_plot.y[pos],
-        xref: 'x',
-        yref: 'y',
+        xref: "x",
+        yref: "y",
         text: NSWlearner_plot.name[pos],
         showarrow: false,
       });
-      
-      pos = Math.floor(Math.random()*NSWresource_plot.x.length);
+
+      pos = Math.floor(Math.random() * NSWresource_plot.x.length);
       annots_resource.push({
         x: NSWresource_plot.x[pos],
         y: NSWresource_plot.y[pos],
-        xref: 'x',
-        yref: 'y',
+        xref: "x",
+        yref: "y",
         text: NSWresource_plot.name[pos],
         showarrow: false,
       });
-    }
-    else if(props.course === "Machine Learning")
-    {
-      let pos = Math.floor(Math.random()*MLlearner_plot.x.length);
+    } else if (props.course === "Machine Learning") {
+      let pos = Math.floor(Math.random() * MLlearner_plot.x.length);
       annots_learner.push({
         x: MLlearner_plot.x[pos],
         y: MLlearner_plot.y[pos],
-        xref: 'x',
-        yref: 'y',
+        xref: "x",
+        yref: "y",
         text: MLlearner_plot.name[pos],
         showarrow: false,
       });
 
-      pos = Math.floor(Math.random()*MLresource_plot.x.length);
+      pos = Math.floor(Math.random() * MLresource_plot.x.length);
       annots_resource.push({
         x: MLresource_plot.x[pos],
         y: MLresource_plot.y[pos],
-        xref: 'x',
-        yref: 'y',
+        xref: "x",
+        yref: "y",
         text: MLresource_plot.name[pos],
         showarrow: false,
       });
@@ -182,7 +185,7 @@ const Main = (props) => {
   //   xref: 'x',
   //   yref: 'y',
   //   text: 'M20147',
-  //   showarrow: false,              
+  //   showarrow: false,
   // },
   // {
   //   x: 0.0708,
@@ -190,7 +193,7 @@ const Main = (props) => {
   //   xref: 'x',
   //   yref: 'y',
   //   text: 'M20091',
-  //   showarrow: false,              
+  //   showarrow: false,
   // },
   // {
   //   x: 0.5627,
@@ -198,7 +201,7 @@ const Main = (props) => {
   //   xref: 'x',
   //   yref: 'y',
   //   text: 'M20088',
-  //   showarrow: false,              
+  //   showarrow: false,
   // },
   // {
   //   x: 0.3188,
@@ -206,7 +209,7 @@ const Main = (props) => {
   //   xref: 'x',
   //   yref: 'y',
   //   text: 'M20089',
-  //   showarrow: false,              
+  //   showarrow: false,
   // },
   // {
   //   x: 0.8589,
@@ -214,9 +217,9 @@ const Main = (props) => {
   //   xref: 'x',
   //   yref: 'y',
   //   text: 'M20047',
-  //   showarrow: false,              
+  //   showarrow: false,
   // }];
-  
+
   // annots_resource = [
   // {
   //   x: 0.2567,
@@ -224,7 +227,7 @@ const Main = (props) => {
   //   xref: 'x',
   //   yref: 'y',
   //   text: 'Retweet Graph.pdf',
-  //   showarrow: false,              
+  //   showarrow: false,
   // },
   // {
   //   x: 0.2978,
@@ -232,7 +235,7 @@ const Main = (props) => {
   //   xref: 'x',
   //   yref: 'y',
   //   text: 'SEN5.pdf',
-  //   showarrow: false,              
+  //   showarrow: false,
   // },
   // {
   //   x: 0.5787,
@@ -240,7 +243,7 @@ const Main = (props) => {
   //   xref: 'x',
   //   yref: 'y',
   //   text: 'Markov Chain.pdf',
-  //   showarrow: false,              
+  //   showarrow: false,
   // },
   // {
   //   x: 0.7706,
@@ -248,7 +251,7 @@ const Main = (props) => {
   //   xref: 'x',
   //   yref: 'y',
   //   text: 'SEN9.pdf',
-  //   showarrow: false,              
+  //   showarrow: false,
   // },
   // {
   //   x: 0.9548,
@@ -256,30 +259,24 @@ const Main = (props) => {
   //   xref: 'x',
   //   yref: 'y',
   //   text: 'Epidemics',
-  //   showarrow: false,              
+  //   showarrow: false,
   // }]
 
   for (let i = 0; i < props.type.length; i++) {
     if (props.type[i] === "learner") {
-      if(props.course === "Network Science for Web")
-      {
+      if (props.course === "Network Science for Web") {
         data.push(NSWlearner_plot);
         a1 = annots_learner;
-      }
-      else if(props.course === "Machine Learning")
-      {
+      } else if (props.course === "Machine Learning") {
         data.push(MLlearner_plot);
         a1 = annots_learner;
       }
     }
     if (props.type[i] === "resource") {
-      if(props.course === "Network Science for Web")
-      {
+      if (props.course === "Network Science for Web") {
         data.push(NSWresource_plot);
         a2 = annots_resource;
-      }
-      else if(props.course === "Machine Learning")
-      {
+      } else if (props.course === "Machine Learning") {
         data.push(MLresource_plot);
         a2 = annots_resource;
       }
@@ -296,7 +293,7 @@ const Main = (props) => {
           paper_bgcolor: "D9D9D9",
           plot_bgcolor: "#FF65",
           orientation: "h",
-          annotations: a1.concat(a2)
+          annotations: a1.concat(a2),
         }}
         useResizeHandler={true}
         config={{ responsive: true }}
@@ -305,7 +302,13 @@ const Main = (props) => {
           props.handler(
             data.points[0].x,
             data.points[0].y,
-            data.points[0].text == "👤" ? api.NSWlearners : api.NSWresources,
+            data.points[0].text == "👤"
+              ? props.course === "Machine Learning"
+                ? api.MLlearners
+                : api.NSWlearners
+              : props.course === "Machine Learning"
+              ? api.MLresources
+              : api.NSWresources,
             data.points[0].text == "👤" ? "learner" : "resource"
           );
         }}
