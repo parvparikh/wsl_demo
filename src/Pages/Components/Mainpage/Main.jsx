@@ -11,22 +11,21 @@ const Main = (props) => {
     async function initialise() {
       // await api.loadLearnerData();
       // await api.loadResourceData();
+      api.cleanList();
       Promise.all([
-        api.NSWloadLearnerData(),
-        api.NSWloadResourceData(),
-        api.MLloadLearnerData(),
-        api.MLloadResourceData(),
+        api.loadLearnerData(props.course),
+        api.loadResourceData(props.course),
       ]);
-      api.learnerResourceMapping(0);
+      api.learnerResourceMapping(props.course);
     }
     // Execute the created function directly
     initialise();
   }, [data]);
   // console.log(api.NSWlearner_contribution);
   // console.log("ML learner data", api.MLlearner_x);
-  let NSWlearner_plot = {
-    x: api.NSWlearner_x,
-    y: api.NSWlearner_y,
+  let learner_plot = {
+    x: api.learner_x,
+    y: api.learner_y,
     type: "scatter",
     mode: "text",
     marker: {
@@ -38,17 +37,17 @@ const Main = (props) => {
       },
       symbol: "square-dot",
     },
-    text: api.NSWlearner_icon,
-    name: api.NSWlearners_id,
+    text: api.learner_icon,
+    name: api.learners_id,
     hovertemplate: "Learner",
     textposition: "center",
     textfont: {
       size: 18,
     },
   };
-  let NSWresource_plot = {
-    x: api.NSWresource_x,
-    y: api.NSWresource_y,
+  let resource_plot = {
+    x: api.resource_x,
+    y: api.resource_y,
     type: "scatter",
     mode: "text",
     marker: {
@@ -60,58 +59,15 @@ const Main = (props) => {
       },
       symbol: "square-dot",
     },
-    text: api.NSWresource_icon,
-    name: api.NSWresources_name,
+    text: api.resource_icon,
+    name: api.resources_name,
     hovertemplate: "Resource",
     textposition: "center",
     textfont: {
       size: 18,
     },
   };
-  let MLlearner_plot = {
-    x: api.MLlearner_x,
-    y: api.MLlearner_y,
-    type: "scatter",
-    mode: "text",
-    marker: {
-      color: "green",
-      size: 12,
-      line: {
-        color: "white",
-        width: 2,
-      },
-      symbol: "square-dot",
-    },
-    text: api.MLlearner_icon,
-    name: api.MLlearners_id,
-    hovertemplate: "Learner",
-    textposition: "center",
-    textfont: {
-      size: 18,
-    },
-  };
-  let MLresource_plot = {
-    x: api.MLresource_x,
-    y: api.MLresource_y,
-    type: "scatter",
-    mode: "text",
-    marker: {
-      color: "green",
-      size: 12,
-      line: {
-        color: "white",
-        width: 2,
-      },
-      symbol: "square-dot",
-    },
-    text: api.MLresource_icon,
-    name: api.MLresources_name,
-    hovertemplate: "Resource",
-    textposition: "center",
-    textfont: {
-      size: 18,
-    },
-  };
+
   let start_point = {
     x: [0],
     y: [0],
@@ -136,150 +92,35 @@ const Main = (props) => {
   let annots_learner = [],
     annots_resource = [];
   for (let i = 0; i < 5; i++) {
-    if (props.course === "Network Science for Web") {
-      let pos = Math.floor(Math.random() * NSWlearner_plot.x.length);
-      annots_learner.push({
-        x: NSWlearner_plot.x[pos],
-        y: NSWlearner_plot.y[pos],
-        xref: "x",
-        yref: "y",
-        text: NSWlearner_plot.name[pos],
-        showarrow: false,
-      });
+    let pos = Math.floor(Math.random() * learner_plot.x.length);
+    annots_learner.push({
+      x: learner_plot.x[pos],
+      y: learner_plot.y[pos],
+      xref: "x",
+      yref: "y",
+      text: learner_plot.name[pos],
+      showarrow: false,
+    });
 
-      pos = Math.floor(Math.random() * NSWresource_plot.x.length);
-      annots_resource.push({
-        x: NSWresource_plot.x[pos],
-        y: NSWresource_plot.y[pos],
-        xref: "x",
-        yref: "y",
-        text: NSWresource_plot.name[pos],
-        showarrow: false,
-      });
-    } else if (props.course === "Machine Learning") {
-      let pos = Math.floor(Math.random() * MLlearner_plot.x.length);
-      annots_learner.push({
-        x: MLlearner_plot.x[pos],
-        y: MLlearner_plot.y[pos],
-        xref: "x",
-        yref: "y",
-        text: MLlearner_plot.name[pos],
-        showarrow: false,
-      });
-
-      pos = Math.floor(Math.random() * MLresource_plot.x.length);
-      annots_resource.push({
-        x: MLresource_plot.x[pos],
-        y: MLresource_plot.y[pos],
-        xref: "x",
-        yref: "y",
-        text: MLresource_plot.name[pos],
-        showarrow: false,
-      });
-    }
+    pos = Math.floor(Math.random() * resource_plot.x.length);
+    annots_resource.push({
+      x: resource_plot.x[pos],
+      y: resource_plot.y[pos],
+      xref: "x",
+      yref: "y",
+      text: resource_plot.name[pos],
+      showarrow: false,
+    });
   }
-  // annots_learner = [
-  // {
-  //   x: 0.367,
-  //   y: 0.80,
-  //   xref: 'x',
-  //   yref: 'y',
-  //   text: 'M20147',
-  //   showarrow: false,
-  // },
-  // {
-  //   x: 0.0708,
-  //   y: 0.5154,
-  //   xref: 'x',
-  //   yref: 'y',
-  //   text: 'M20091',
-  //   showarrow: false,
-  // },
-  // {
-  //   x: 0.5627,
-  //   y: 0.341,
-  //   xref: 'x',
-  //   yref: 'y',
-  //   text: 'M20088',
-  //   showarrow: false,
-  // },
-  // {
-  //   x: 0.3188,
-  //   y: 0.0976,
-  //   xref: 'x',
-  //   yref: 'y',
-  //   text: 'M20089',
-  //   showarrow: false,
-  // },
-  // {
-  //   x: 0.8589,
-  //   y: 0.692,
-  //   xref: 'x',
-  //   yref: 'y',
-  //   text: 'M20047',
-  //   showarrow: false,
-  // }];
-
-  // annots_resource = [
-  // {
-  //   x: 0.2567,
-  //   y: 0.9380,
-  //   xref: 'x',
-  //   yref: 'y',
-  //   text: 'Retweet Graph.pdf',
-  //   showarrow: false,
-  // },
-  // {
-  //   x: 0.2978,
-  //   y: 0.5644,
-  //   xref: 'x',
-  //   yref: 'y',
-  //   text: 'SEN5.pdf',
-  //   showarrow: false,
-  // },
-  // {
-  //   x: 0.5787,
-  //   y: 0.8619,
-  //   xref: 'x',
-  //   yref: 'y',
-  //   text: 'Markov Chain.pdf',
-  //   showarrow: false,
-  // },
-  // {
-  //   x: 0.7706,
-  //   y: 0.46599,
-  //   xref: 'x',
-  //   yref: 'y',
-  //   text: 'SEN9.pdf',
-  //   showarrow: false,
-  // },
-  // {
-  //   x: 0.9548,
-  //   y: 0.1771,
-  //   xref: 'x',
-  //   yref: 'y',
-  //   text: 'Epidemics',
-  //   showarrow: false,
-  // }]
 
   for (let i = 0; i < props.type.length; i++) {
     if (props.type[i] === "learner") {
-      if (props.course === "Network Science for Web") {
-        data.push(NSWlearner_plot);
-        a1 = annots_learner;
-      } else if (props.course === "Machine Learning") {
-        data.push(MLlearner_plot);
-        a1 = annots_learner;
-      }
+      data.push(learner_plot);
+      a1 = annots_learner;
     }
     if (props.type[i] === "resource") {
-      if (props.course === "Network Science for Web") {
-        data.push(NSWresource_plot);
-        a2 = annots_resource;
-      } else if (props.course === "Machine Learning") {
-        data.push(MLresource_plot);
-        a2 = annots_resource;
-      }
+      data.push(resource_plot);
+      a2 = annots_resource;
     }
   }
   data.push(start_point);
@@ -302,14 +143,8 @@ const Main = (props) => {
           props.handler(
             data.points[0].x,
             data.points[0].y,
-            data.points[0].text == "👤"
-              ? props.course === "Machine Learning"
-                ? api.MLlearners
-                : api.NSWlearners
-              : props.course === "Machine Learning"
-              ? api.MLresources
-              : api.NSWresources,
-            data.points[0].text == "👤" ? "learner" : "resource"
+            data.points[0].text === "👤" ? api.learners : api.resources,
+            data.points[0].text === "👤" ? "learner" : "resource"
           );
         }}
         style={{

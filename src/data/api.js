@@ -1,106 +1,96 @@
 import * as NSWlearnerdata from "./parsed_learner.json"
 import * as NSWresourceData from "./resource.json"
-import * as resourceName from "./LearningObjects.json"
+import * as resourceNameNSW from "./LearningObjects.json"
 import * as MLlearnerdata from "./learners1.json"
 import * as MLresourceData from "./resources1.json"
-//hardcoded need to change 
-// const subject = 0 
-//add export later
-
+import * as resourceNameML from "./LearningObjects_ML.json"
 let data = [];
+const selectSubject = {
+  //dictionary of form "Name of Course": [learnerData,resourceData,resourceNameMapping]
+  "Network Science for Web" : [NSWlearnerdata,NSWresourceData,resourceNameNSW],
+  "Machine Learning" : [MLlearnerdata,MLresourceData,resourceNameML], 
+  "Web and Mind":[],
 
+};
 //NSW
-export let NSWresources = []
-export let NSWlearners_object = []; 
-export const NSWresource_x = []
-export const NSWresource_y = []
-export const NSWresources_polyline = []
-export const NSWresources_name = []
-export const NSWresources_type = []
-export const NSWresources_volume = []
-export const NSWresources_description = []
-export const NSWresource_icon = []
+export let resources = []
+export let learners_object = []; 
+export let resource_x = [] 
+export let resource_y = []
+export let resources_polyline = []
+export let resources_name = []
+export let resources_type = []
+export let resources_volume = []
+export let resources_description = []
+export let resource_icon = []
 
-export const NSWlearner_contribution = []
-export let NSWlearners= []
-export const NSWlearner_x = []
-export const NSWlearner_y = []
-export const NSWlearners_polyline = []
-export const NSWlearners_name = []
-export const NSWlearners_file_name = []
-export const NSWlearners_id = []
+export let learner_contribution = []
+export let learners= []
+export let learner_x = []
+export let learner_y = []
+export let learners_polyline = []
+export let learners_name = []
+export let learners_file_name = []
+export let learners_id = []
 export let topic_names = new Map();
-export const NSWlearner_icon = [] ; 
+export let learner_icon = [] ; 
 
-//ML
-export let MLresources = []
-export let MLlearners_object = []; 
-export const MLresource_x = []
-export const MLresource_y = []
-export const MLresources_polyline = []
-export const MLresources_name = []
-export const MLresources_type = []
-export const MLresources_volume = []
-export const MLresources_description = []
-export const MLresource_icon = []
+export const cleanList = ()=>{
+resources = []
+ learners_object = []; 
+ resource_x = [] 
+ resource_y = []
+ resources_polyline = []
+ resources_name = []
+ resources_type = []
+ resources_volume = []
+ resources_description = []
+ resource_icon = []
 
-export const MLlearner_contribution = []
-export let MLlearners= []
-export const MLlearner_x = []
-export const MLlearner_y = []
-export const MLlearners_polyline = []
-export const MLlearners_name = []
-export const MLlearners_file_name = []
-export const MLlearners_id = []
-export const MLlearner_icon = [] ;
+ learner_contribution = []
+ learners= []
+ learner_x = []
+ learner_y = []
+ learners_polyline = []
+ learners_name = []
+ learners_file_name = []
+ learners_id = []
+ topic_names = new Map();
+ learner_icon = [] ; 
+  
 
-export const NSWloadResourceData = async (filename,subject)=>{
-  loadTopicNames('LearneringObjects.json',1)
- 
-   data = JSON.stringify(NSWresourceData)
+}
+export const loadResourceData = async (subject)=>{
+  
+  loadTopicNames(subject)
+  let file = selectSubject[subject][1];
+   data = JSON.stringify(file)
    let t = JSON.parse(data)   
-   NSWresources = Object.values(t)
-   loadTopicNames('LearneringObjects.json',1)
-  NSWresources.forEach(resource => {
-    NSWresource_icon.push("📄")
-    NSWresource_x.push(resource["ld"]["x"])
-    NSWresource_y.push(resource["ld"]["y"])
-    NSWresources_polyline.push({ [resource["name"]]: resource["polyline"]})
-    NSWresources_name.push(resource["name"])
-    NSWresources_type.push([ resource["type"]])
-    NSWresources_volume.push([ resource["resource_volume"] ])
-    NSWresources_description.push({[resource["name"]] : resource["resource_summary"]})
+   resources = Object.values(t)
+   loadTopicNames(subject,1)
+  resources.forEach(resource => {
+    resource_icon.push("📄")
+    resource_x.push(resource["ld"]["x"])
+    resource_y.push(resource["ld"]["y"])
+    resources_polyline.push({ [resource["name"]]: resource["polyline"]})
+    resources_name.push(resource["name"])
+    resources_type.push([ resource["type"]])
+    resources_volume.push([ resource["resource_volume"] ])
+    resources_description.push({[resource["name"]] : resource["resource_summary"]})
    });
    
   
 }
 
-export const MLloadResourceData = async (filename,subject)=>{
-  loadTopicNames('LearneringObjects.json',1)
- 
-   data = JSON.stringify(MLresourceData)
-   let t = JSON.parse(data)   
-   MLresources = Object.values(t)
-   loadTopicNames('LearneringObjects.json',1)
-  MLresources.forEach(resource => {
-    MLresource_icon.push("📄")
-    MLresource_x.push(resource["ld"]["x"])
-    MLresource_y.push(resource["ld"]["y"])
-    MLresources_polyline.push({ [resource["name"]]: resource["polyline"]})
-    MLresources_name.push(resource["name"])
-    MLresources_type.push([ resource["type"]])
-    MLresources_volume.push([ resource["resource_volume"] ])
-    MLresources_description.push({[resource["name"]] : resource["resource_summary"]})
-   });
-   
-  
-}
 
-export const loadTopicNames = (filename,subject) =>{
-   data = JSON.stringify(resourceName)
+export const loadTopicNames = (subject) =>{
+  console.log(subject)
+  let file = selectSubject[subject][2];
+  
+   data = JSON.stringify(file)
    let t = JSON.parse(data)   
-    NSWlearners_object= Object.values(t)
-    NSWlearners_object.forEach(rname=>{
+    learners_object= Object.values(t)
+    learners_object.forEach(rname=>{
       topic_names.set(rname.topic_id,rname.name);
     })
 
@@ -109,11 +99,11 @@ export const loadTopicNames = (filename,subject) =>{
     }); 
  
     topic_names = new Map(topic_names2);
- 
+    
 
 }
-export const getTop3 = (resource) =>{
-    loadTopicNames('LearneringObjects.json',1)
+export const getTop3 = (resource,subject) =>{
+    loadTopicNames(subject)
     let temp = [];
     let t2 = [];
     for(const prop in resource.polyline){
@@ -153,42 +143,26 @@ export const getTop3 = (resource) =>{
 
 }
 
-export const NSWloadLearnerData = async(filename,subject)=>{
-  loadTopicNames('LearneringObjects.json',1)
-  data = NSWlearnerdata;
+export const loadLearnerData = async(subject)=>{
+  loadTopicNames(subject)
+  let file = selectSubject[subject][0];
+  learners = Object.values(file);
   
-  NSWlearners = Object.values(data);
   
-    NSWlearners.forEach(learner => {
-      NSWlearner_icon.push("👤");
-      NSWlearner_x.push(learner["ld"]["x"])
-      NSWlearner_y.push(learner["ld"]["y"])
-      NSWlearners_polyline.push({ [learner["Learner Id"]]: learner["polyline"]})
-      NSWlearners_file_name.push( learner["file name"])
-      NSWlearners_id.push(learner["Learner Id"])
+ 
+    learners.forEach(learner => {
+      learner_icon.push("👤");
+      learner_x.push(learner["ld"]["x"])
+      learner_y.push(learner["ld"]["y"])
+      learners_polyline.push({ [learner["Learner Id"]]: learner["polyline"]})
+      learners_file_name.push( learner["file name"])
+      learners_id.push(learner["Learner Id"])
        });
        
      
 }
 
-export const MLloadLearnerData = async(filename,subject)=>{
-  loadTopicNames('LearneringObjects.json',1)
-  data = MLlearnerdata;
-  
-  MLlearners = Object.values(data);
-  
-    MLlearners.forEach(learner => {
-      MLlearner_icon.push("👤");
-      MLlearner_x.push(learner["ld"]["x"])
-      MLlearner_y.push(learner["ld"]["y"])
-      MLlearners_polyline.push({ [learner["Learner Id"]]: learner["polyline"]})
-      MLlearners_file_name.push( learner["file name"])
-      MLlearners_id.push(learner["Learner Id"])
-       });
-       
-       
-     
-}
+
 export const learnerResourceMapping = (subject)=>{
     // console.log("learners length" , learners.length);
     // // for(let i = 0 ; i<learners.length; i++){

@@ -24,7 +24,7 @@ const Mainpage = () => {
     for (let i = 0; i < resources.length; i++) {
       if (resources[i]["ld"]["x"] === x && resources[i]["ld"]["y"] === y) {
         setData(resources[i]);
-        setTop3(getTop3(resources[i]));
+        setTop3(getTop3(resources[i], course));
         setSideType(type);
         console.log(data);
       }
@@ -35,14 +35,19 @@ const Mainpage = () => {
   };
   const courseHandler = (e) => {
     setCourse(e.target.value);
-  }
+  };
   useEffect(() => {}, [typeOfData]);
   return (
     <>
-      <Heading course={course}/>
-      <Navbar handler={navHandler} courseHandler={courseHandler}/>
+      <Heading course={course} />
+      <Navbar handler={navHandler} courseHandler={courseHandler} />
       <div className="flex w-full h-full  justify-between">
-        <Main handler={handler} type={typeOfData} className="" course={course}/>
+        <Main
+          handler={handler}
+          type={typeOfData}
+          className=""
+          course={course}
+        />
         <div className="flex flex-col justify-center ">
           <Sidebar
             hide={hide}
