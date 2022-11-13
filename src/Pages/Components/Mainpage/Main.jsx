@@ -39,7 +39,7 @@ const Main = (props) => {
     },
     text: api.learner_icon,
     name: api.learners_id,
-    hovertemplate: "Learner",
+    hovertemplate: "Learner <extra></extra>",
     textposition: "center",
     textfont: {
       size: 18,
@@ -135,6 +135,16 @@ const Main = (props) => {
           plot_bgcolor: "#FF65",
           orientation: "h",
           annotations: a1.concat(a2),
+          // shapes: [
+          //   {
+          //     type: "path",
+          //     path: "M0,0 Q0.1,0 0.2,1",
+          //     line: {
+          //       color: "rgb(93, 164, 214)",
+          //     },
+          //     fillcolor: "white",
+          //   },
+          // ],
         }}
         useResizeHandler={true}
         config={{ responsive: true }}
