@@ -1,0 +1,50 @@
+[
+	{
+		"id": "0",
+		"topic_id": "0",
+		"name": "Linear Regression",
+		"type": "topic",
+		"topic_polyline": { "0": 10, "1": 3, "2": 6, "3": 5, "4": 8, "5": 5 },
+		"ld": { "x": 17.310021064322108, "y": 19.68997893572046 }
+	},
+	{
+		"id": "1",
+		"topic_id": "1",
+		"name": "Supervised Classification",
+		"type": "topic",
+		"topic_polyline": { "0": 3, "1": 10, "2": 3, "3": 3, "4": 2, "5": 4 },
+		"ld": { "x": 2.7746442502410766, "y": 22.225355749767402 }
+	},
+	{
+		"id": "2",
+		"topic_id": "2",
+		"name": "Unsupervised Clustering",
+		"type": "topic",
+		"topic_polyline": { "0": 6, "1": 3, "2": 10, "3": 4, "4": 5, "5": 5 },
+		"ld": { "x": 8.59757286813753, "y": 24.402427131844178 }
+	},
+	{
+		"id": "3",
+		"topic_id": "3",
+		"name": "Dimensionality Reduction",
+		"type": "topic",
+		"topic_polyline": { "0": 5, "1": 3, "2": 4, "3": 10, "4": 5, "5": 5 },
+		"ld": { "x": 18.873813194839606, "y": 13.12618680511319 }
+	},
+	{
+		"id": "4",
+		"topic_id": "4",
+		"name": "Perceptron Regression",
+		"type": "topic",
+		"topic_polyline": { "0": 8, "1": 2, "2": 5, "3": 5, "4": 10, "5": 5 },
+		"ld": { "x": 22.921701075058035, "y": 12.078298924971126 }
+	},
+	{
+		"id": "5",
+		"topic_id": "5",
+		"name": "Support Vector Machines",
+		"type": "topic",
+		"topic_polyline": { "0": 5, "1": 4, "2": 5, "3": 5, "4": 5, "5": 10 },
+		"ld": { "x": 20.523611252164358, "y": 13.476388747835642 }
+	}
+]

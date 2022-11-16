@@ -4,6 +4,7 @@ import * as resourceNameNSW from "./LearningObjects.json"
 import * as MLlearnerdata from "./learners1.json"
 import * as MLresourceData from "./resources1.json"
 import * as resourceNameML from "./LearningObjects_ML.json"
+// import * as resourceNameML from "./topic1.json"
 let data = [];
 const selectSubject = {
   //dictionary of form "Name of Course": [learnerData,resourceData,resourceNameMapping]

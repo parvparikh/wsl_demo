@@ -61,7 +61,7 @@ const Main = (props) => {
     },
     text: api.resource_icon,
     name: api.resources_name,
-    hovertemplate: "Resource",
+    hovertemplate: "Resource <extra></extra>",
     textposition: "center",
     textfont: {
       size: 18,
