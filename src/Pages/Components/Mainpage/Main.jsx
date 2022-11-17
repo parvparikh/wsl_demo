@@ -135,16 +135,20 @@ const Main = (props) => {
           plot_bgcolor: "#FF65",
           orientation: "h",
           annotations: a1.concat(a2),
-          // shapes: [
-          //   {
-          //     type: "path",
-          //     path: "M0,0 Q0.1,0 0.2,1",
-          //     line: {
-          //       color: "rgb(93, 164, 214)",
-          //     },
-          //     fillcolor: "white",
-          //   },
-          // ],
+          shapes: [
+            {
+              type: 'line',
+              x0: 0,
+              y0: 0,
+              x1: Math.max(Math.max(...learner_plot.x), Math.max(...resource_plot.x)),
+              y1: Math.max(Math.max(...learner_plot.y), Math.max(...resource_plot.y)),
+              line: {
+                color: 'rgb(128, 0, 128)',
+                width: 4,
+                dash: 'dot'
+              }
+            }
+           ],
         }}
         useResizeHandler={true}
         config={{ responsive: true }}
