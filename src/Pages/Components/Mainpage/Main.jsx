@@ -15,6 +15,7 @@ const Main = (props) => {
       Promise.all([
         api.loadLearnerData(props.course),
         api.loadResourceData(props.course),
+        api.loadLearnerContribution(props.course),
       ]);
       api.learnerResourceMapping(props.course);
     }
@@ -67,6 +68,28 @@ const Main = (props) => {
       size: 18,
     },
   };
+  let learner_contribution_plot = {
+    x: api.lc_x,
+    y: api.lc_y,
+    type: "scatter",
+    mode: "text",
+    marker: {
+      color: "green",
+      size: 12,
+      line: {
+        color: "white",
+        width: 2,
+      },
+      symbol: "square-dot",
+    },
+    text: api.lc_icon,
+    name: api.lc_name,
+    hovertemplate: "Learner Contribution <extra></extra>",
+    textposition: "center",
+    textfont: {
+      size: 18,
+    },
+  };
 
   let start_point = {
     x: [0],
@@ -112,7 +135,7 @@ const Main = (props) => {
       showarrow: false,
     });
   }
-
+  console.log(props.type);
   for (let i = 0; i < props.type.length; i++) {
     if (props.type[i] === "learner") {
       data.push(learner_plot);
@@ -122,7 +145,12 @@ const Main = (props) => {
       data.push(resource_plot);
       a2 = annots_resource;
     }
+    if (props.type[i] === "learner_contribution") {
+      data.push(learner_contribution_plot);
+      // a2 = annots_resource;
+    }
   }
+  // data.push(learner_contribution_plot);
   data.push(start_point);
   return (
     <div className="grow">
@@ -137,28 +165,50 @@ const Main = (props) => {
           annotations: a1.concat(a2),
           shapes: [
             {
-              type: 'line',
+              type: "line",
               x0: 0,
               y0: 0,
-              x1: Math.max(Math.max(...learner_plot.x), Math.max(...resource_plot.x)),
-              y1: Math.max(Math.max(...learner_plot.y), Math.max(...resource_plot.y)),
+              x1: Math.max(
+                Math.max(...learner_plot.x),
+                Math.max(...resource_plot.x)
+              ),
+              y1: Math.max(
+                Math.max(...learner_plot.y),
+                Math.max(...resource_plot.y)
+              ),
               line: {
-                color: 'rgb(128, 0, 128)',
+                color: "rgb(128, 0, 128)",
                 width: 4,
-                dash: 'dot'
-              }
-            }
-           ],
+                dash: "dot",
+              },
+            },
+          ],
         }}
         useResizeHandler={true}
         config={{ responsive: true }}
         onClick={(data) => {
           console.log(data);
+          let send_resource;
+          let send_type;
+
+          if (data.points[0].text === "👤") {
+            send_resource = api.learners;
+            send_type = "learner";
+          }
+          if (data.points[0].text === "📄") {
+            send_resource = api.resources;
+            send_type = "resource";
+          }
+          if (data.points[0].text === "💬") {
+            send_resource = api.lc;
+            send_type = "resource";
+          }
+
           props.handler(
             data.points[0].x,
             data.points[0].y,
-            data.points[0].text === "👤" ? api.learners : api.resources,
-            data.points[0].text === "👤" ? "learner" : "resource"
+            send_resource,
+            send_type
           );
         }}
         style={{

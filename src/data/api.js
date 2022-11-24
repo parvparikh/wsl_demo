@@ -4,11 +4,12 @@ import * as resourceNameNSW from "./LearningObjects.json"
 import * as MLlearnerdata from "./learners1.json"
 import * as MLresourceData from "./resources1.json"
 import * as resourceNameML from "./LearningObjects_ML.json"
+import * as learnerContributionNSW from './learner_contribution.json'
 // import * as resourceNameML from "./topic1.json"
 let data = [];
 const selectSubject = {
   //dictionary of form "Name of Course": [learnerData,resourceData,resourceNameMapping]
-  "Network Science for Web" : [NSWlearnerdata,NSWresourceData,resourceNameNSW],
+  "Network Science for Web" : [NSWlearnerdata,NSWresourceData,resourceNameNSW,learnerContributionNSW],
   "Machine Learning" : [MLlearnerdata,MLresourceData,resourceNameML], 
   "Web and Mind":[],
 
@@ -24,6 +25,17 @@ export let resources_type = []
 export let resources_volume = []
 export let resources_description = []
 export let resource_icon = []
+
+export let lc = []
+export let lc_object = []; 
+export let lc_x = [] 
+export let lc_y = []
+export let lc_polyline = []
+export let lc_name = []
+export let lc_type = []
+export let lc_volume = []
+export let lc_description = []
+export let lc_icon = []
 
 export let learner_contribution = []
 export let learners= []
@@ -47,6 +59,8 @@ resources = []
  resources_volume = []
  resources_description = []
  resource_icon = []
+
+ 
 
  learner_contribution = []
  learners= []
@@ -78,6 +92,28 @@ export const loadResourceData = async (subject)=>{
     resources_type.push([ resource["type"]])
     resources_volume.push([ resource["resource_volume"] ])
     resources_description.push({[resource["name"]] : resource["resource_summary"]})
+   });
+   
+  
+}
+
+export const loadLearnerContribution= async (subject)=>{
+  
+  loadTopicNames(subject)
+  let file = selectSubject[subject][3];
+   data = JSON.stringify(file)
+   let t = JSON.parse(data)   
+   lc = Object.values(t)
+   loadTopicNames(subject,1)
+  lc.forEach(resource => {
+    lc_icon.push("💬")
+    lc_x.push(resource["ld"]["x"])
+    lc_y.push(resource["ld"]["y"])
+    lc_polyline.push({ [resource["name"]]: resource["polyline"]})
+    lc_name.push(resource["name"])
+    lc_type.push([ resource["type"]])
+    lc_volume.push([ resource["resource_volume"] ])
+    lc_description.push({[resource["name"]] : resource["resource_summary"]})
    });
    
   
