@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useReducer } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { getTop3 } from "../data/api.js";
@@ -14,10 +14,10 @@ const Mainpage = () => {
   const [typeOfData, setTypeOfData] = useState([]);
   const [sideType, setSideType] = useState("");
   const [course, setCourse] = useState("Network Science for Web");
+
   const navHandler = (toSet) => {
     setHide("true");
     setTypeOfData(toSet);
-    console.log(toSet);
   };
   const handler = (x, y, resources, type) => {
     setHide("false");
@@ -26,7 +26,6 @@ const Mainpage = () => {
         setData(resources[i]);
         setTop3(getTop3(resources[i], course));
         setSideType(type);
-        console.log(data);
       }
     }
   };
@@ -35,8 +34,9 @@ const Mainpage = () => {
   };
   const courseHandler = (e) => {
     setCourse(e.target.value);
+    setHide("true");
   };
-  useEffect(() => {}, [typeOfData]);
+  useEffect(() => {}, [typeOfData, course]);
   return (
     <>
       <Heading course={course} />

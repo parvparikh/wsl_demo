@@ -4,7 +4,8 @@ import { useState } from "react";
 
 const Navbar = (props) => {
   const [selected, setSelected] = useState([]);
-  useEffect(() => {}, [selected]);
+  const [course, setCourse] = useState("Network Science for Web");
+  useEffect(() => {}, [selected, course]);
   const handleChange = (e) => {
     const { value, checked } = e.target;
     console.log(value, " is value and checked is", checked);

@@ -25,7 +25,7 @@ const Main = (props) => {
     }
     // Execute the created function directly
     initialise();
-  }, [data]);
+  }, [data, props.course]);
   // console.log(api.NSWlearner_contribution);
   // console.log("ML learner data", api.MLlearner_x);
   let learner_plot = {
