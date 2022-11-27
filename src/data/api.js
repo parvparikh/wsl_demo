@@ -199,34 +199,6 @@ export const loadLearnerData = async(subject)=>{
      
 }
 
-
-export const learnerResourceMapping = (subject)=>{
-    // console.log("learners length" , learners.length);
-    // // for(let i = 0 ; i<learners.length; i++){
-    // //     learner_contribution.push([]);
-    // // }
-    // learner_contribution = [];
-    // for(let j = 0; j<resources.length; j++){
-    //     if(resources[j]["type"] === "learner" && resources[j]["name"] === learners[subject]["file name"]){
-    //         let r_id = (resources[j]["id"]);
-    //         let r_name = resources[j]["name"];
-    //         // for(let k = 0 ; k<learners_file_name.length;k++){
-    //         //     if(learners_file_name[k]===r_name){
-    //         //       console.log(r_name);
-    //         //         learner_contribution.push(r_id);
-    //         //     }
-    //         // }
-    //         learner_contribution.push(r_id);
-    //     }
-
-    // }
-    // // let contri_learner = [{}]
-    // // for(let i = 0 ; i<learner_contribution[subject].length;i++){
-    // //     for(let j = 0 ; j<learner_contribution[subject][i].length;j++){
-    // //         contri_learner[subject][learner_contribution[subject][j]] = learners_id[subject][i];
-    // //     }
-    // // }
-}
 const actualTerrainData = (subject) =>{
 
 

@@ -6,6 +6,10 @@ const Main = (props) => {
   let data = [];
   let a1 = [],
     a2 = [];
+  let lc_plot = [];
+  let filename = [], x=[], y=[], text=[], name=[];
+  const [learner_x, setLearner_x] = useState(null);
+  const [learner_y, setLearner_y] = useState(null);
 
   useEffect(() => {
     async function initialise() {
@@ -17,7 +21,7 @@ const Main = (props) => {
         api.loadResourceData(props.course),
         api.loadLearnerContribution(props.course),
       ]);
-      api.learnerResourceMapping(props.course);
+      // api.learnerResourceMapping(props.course);
     }
     // Execute the created function directly
     initialise();
@@ -151,6 +155,64 @@ const Main = (props) => {
     }
   }
   // data.push(learner_contribution_plot);
+  for(let i=0;i<api.learner_x.length;i++)
+  {
+    if(api.learner_x[i] === learner_x && api.learner_y[i] === learner_y)
+    {
+      filename.push(api.learners_file_name[i])
+    }
+  }
+  for(let i=0;i<api.lc_name.length;i++)
+  {
+    for(let j=0;j<filename.length;j++)
+    {
+      if(api.lc_name[i] === filename[j])
+      {
+        x.push(api.lc_x[i])
+        y.push(api.lc_y[i])
+        text.push(api.lc_icon[i])
+        name.push(api.lc_name[i])
+      }
+    }
+  }
+
+  lc_plot = {
+    x: x,
+    y: y,
+    type: "scatter",
+    mode: "text",
+    marker: {
+      color: "green",
+      size: 12,
+      line: {
+        color: "white",
+        width: 2,
+      },
+      symbol: "square-dot",
+    },
+    text: text,
+    name: name,
+    hovertemplate: "Learner Contribution <extra></extra>",
+    textposition: "center",
+    textfont: {
+      size: 18,
+    },
+  };
+  data.push(lc_plot);
+
+  if(learner_x != null)
+  {
+    var line = {
+      x: [learner_x, x[0]],
+      y: [learner_y, y[0]],
+      mode: "lines",
+      line: {
+        dash: "dot",
+        width: 3
+      }
+    }
+    data.push(line);
+  }
   data.push(start_point);
   return (
     <div className="grow">
@@ -194,14 +256,21 @@ const Main = (props) => {
           if (data.points[0].text === "👤") {
             send_resource = api.learners;
             send_type = "learner";
+            setLearner_x(data.points[0].x);
+            setLearner_y(data.points[0].y);
+            // learner_handler(data.points[0].x, data.points[0].y)
           }
           if (data.points[0].text === "📄") {
             send_resource = api.resources;
             send_type = "resource";
+            setLearner_x(null);
+            setLearner_y(null);
           }
           if (data.points[0].text === "💬") {
             send_resource = api.lc;
             send_type = "resource";
+            setLearner_x(null);
+            setLearner_y(null);
           }
 
           props.handler(
