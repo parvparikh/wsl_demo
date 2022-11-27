@@ -7,7 +7,11 @@ const Main = (props) => {
   let a1 = [],
     a2 = [];
   let lc_plot = [];
-  let filename = [], x=[], y=[], text=[], name=[];
+  let filename = [],
+    x = [],
+    y = [],
+    text = [],
+    name = [];
   const [learner_x, setLearner_x] = useState(null);
   const [learner_y, setLearner_y] = useState(null);
 
@@ -155,23 +159,18 @@ const Main = (props) => {
     }
   }
   // data.push(learner_contribution_plot);
-  for(let i=0;i<api.learner_x.length;i++)
-  {
-    if(api.learner_x[i] === learner_x && api.learner_y[i] === learner_y)
-    {
-      filename.push(api.learners_file_name[i])
+  for (let i = 0; i < api.learner_x.length; i++) {
+    if (api.learner_x[i] === learner_x && api.learner_y[i] === learner_y) {
+      filename.push(api.learners_file_name[i]);
     }
   }
-  for(let i=0;i<api.lc_name.length;i++)
-  {
-    for(let j=0;j<filename.length;j++)
-    {
-      if(api.lc_name[i] === filename[j])
-      {
-        x.push(api.lc_x[i])
-        y.push(api.lc_y[i])
-        text.push(api.lc_icon[i])
-        name.push(api.lc_name[i])
+  for (let i = 0; i < api.lc_name.length; i++) {
+    for (let j = 0; j < filename.length; j++) {
+      if (api.lc_name[i] === filename[j]) {
+        x.push(api.lc_x[i]);
+        y.push(api.lc_y[i]);
+        text.push(api.lc_icon[i]);
+        name.push(api.lc_name[i]);
       }
     }
   }
@@ -192,7 +191,7 @@ const Main = (props) => {
     },
     text: text,
     name: name,
-    hovertemplate: "Learner Contribution <extra></extra>",
+    hovertemplate: "Learner Contribution<extra></extra>",
     textposition: "center",
     textfont: {
       size: 18,
@@ -200,17 +199,16 @@ const Main = (props) => {
   };
   data.push(lc_plot);
 
-  if(learner_x != null)
-  {
+  if (learner_x != null) {
     var line = {
       x: [learner_x, x[0]],
       y: [learner_y, y[0]],
       mode: "lines",
       line: {
         dash: "dot",
-        width: 3
-      }
-    }
+        width: 3,
+      },
+    };
     data.push(line);
   }
   data.push(start_point);
