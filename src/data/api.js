@@ -1,3 +1,4 @@
+// Backend logic/ Business logic needed by UI elements 
 import * as NSWlearnerdata from "./parsed_learner.json"
 import * as NSWresourceData from "./resource.json"
 import * as resourceNameNSW from "./LearningObjects.json"
@@ -7,6 +8,7 @@ import * as resourceNameML from "./LearningObjects_ML.json"
 import * as learnerContributionNSW from './learner_contribution.json'
 // import * as resourceNameML from "./topic1.json"
 let data = [];
+//selecting a subject from the list 
 const selectSubject = {
   //dictionary of form "Name of Course": [learnerData,resourceData,resourceNameMapping]
   "Network Science for Web" : [NSWlearnerdata,NSWresourceData,resourceNameNSW,learnerContributionNSW],
@@ -14,7 +16,8 @@ const selectSubject = {
   "Web and Mind":[],
 
 };
-//NSW
+//Containers needed for the storing data course-wise : 
+
 export let resources = []
 export let learners_object = []; 
 export let resource_x = [] 
@@ -48,6 +51,7 @@ export let learners_id = []
 export let topic_names = new Map();
 export let learner_icon = [] ; 
 
+//A reset function which clears all the containers, useful for loading different course data on demand
 export const cleanList = ()=>{
 resources = []
  learners_object = []; 
@@ -59,8 +63,6 @@ resources = []
  resources_volume = []
  resources_description = []
  resource_icon = []
-
- 
 
  learner_contribution = []
  learners= []
@@ -75,6 +77,7 @@ resources = []
   
 
 }
+//Loads resource data from json and parse it into usuable UI objects 
 export const loadResourceData = async (subject)=>{
   
   loadTopicNames(subject)
@@ -96,7 +99,7 @@ export const loadResourceData = async (subject)=>{
    
   
 }
-
+//Loads learner_contribution data from json and parse it into usuable UI objects 
 export const loadLearnerContribution= async (subject)=>{
   
   loadTopicNames(subject)
@@ -119,7 +122,7 @@ export const loadLearnerContribution= async (subject)=>{
   
 }
 
-
+//Topic Names for a course which act as a label for various plots. 
 export const loadTopicNames = (subject) =>{
   console.log(subject)
   let file = selectSubject[subject][2];
@@ -139,6 +142,9 @@ export const loadTopicNames = (subject) =>{
     
 
 }
+//Simple algorithm to obtain top 3 competenceies from any polyline data 
+//Arrange values by polyline data and map it to the topics names and 
+//  return a list of top 3 competencies of a learning object 
 export const getTop3 = (resource,subject) =>{
     loadTopicNames(subject)
     let temp = [];
@@ -179,7 +185,7 @@ export const getTop3 = (resource,subject) =>{
   
 
 }
-
+//Parse learner.json to obtain value for UI and fill the necessary containers 
 export const loadLearnerData = async(subject)=>{
   loadTopicNames(subject)
   let file = selectSubject[subject][0];
@@ -198,11 +204,3 @@ export const loadLearnerData = async(subject)=>{
        
      
 }
-
-const actualTerrainData = (subject) =>{
-
-
-}
-
-
-

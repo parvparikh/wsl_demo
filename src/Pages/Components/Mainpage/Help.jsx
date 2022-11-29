@@ -1,3 +1,4 @@
+//Modal information for help
 import React from "react";
 import description from "./mapdescription.png";
 const Help = () => {

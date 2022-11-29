@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-
+//deals with checkbox for learning object selection and course selection dropdown
 const Navbar = (props) => {
   const [selected, setSelected] = useState([]);
   const [course, setCourse] = useState("Network Science for Web");

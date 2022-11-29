@@ -1,3 +1,4 @@
+//Main page wrapper which holds all componenets
 import React, { useReducer } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -8,17 +9,19 @@ import Navbar from "./Components/Mainpage/Navbar.jsx";
 import Polyline from "./Components/Mainpage/Polyline.jsx";
 import Sidebar from "./Components/Mainpage/Sidebar.jsx";
 const Mainpage = () => {
+  //State management for what kind of subject, data is queried.
   const [hide, setHide] = useState("true");
   const [data, setData] = useState(null);
   const [top3, setTop3] = useState(null);
   const [typeOfData, setTypeOfData] = useState([]);
   const [sideType, setSideType] = useState("");
   const [course, setCourse] = useState("Network Science for Web");
-
+  //Navbar is handled in the following way
   const navHandler = (toSet) => {
     setHide("true");
     setTypeOfData(toSet);
   };
+  //On clicking an user/resource the following snippet queries needed information from the sidebar
   const handler = (x, y, resources, type) => {
     setHide("false");
     for (let i = 0; i < resources.length; i++) {
@@ -29,14 +32,17 @@ const Mainpage = () => {
       }
     }
   };
+  //For back button in Sidebar
   const handler2 = () => {
     setHide("true");
   };
+  //For the course selection dropdown
   const courseHandler = (e) => {
     setCourse(e.target.value);
     setHide("true");
   };
   useEffect(() => {}, [typeOfData, course]);
+  //UI structure
   return (
     <>
       <Heading course={course} />

@@ -1,8 +1,9 @@
+//Heading component
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Modal from "react-modal";
 import Help from "./Help.jsx";
-
+//Component consist of: Heading as well as Modal for help
 const Heading = (props) => {
   const [help, setHelp] = useState(false);
   return (

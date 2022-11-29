@@ -1,5 +1,5 @@
 import React from "react";
-
+//Sidebar HTML and css
 const Sidebar = (props) => {
   let custom_css =
     props.hide === "true"
