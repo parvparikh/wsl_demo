@@ -1,70 +1,38 @@
-# Getting Started with Create React App
+# Navigated Learning Portal in React
+A responsive user interface which presents a discourse map for various courses where learners are placed based on their polyline information. Along with learners, learning objects like learner's contributions made throughout the course are also mapped and visualised in a Map (a novel approach similar to Google Maps with position of every object having some semantic meaning associated with it on the map). A Reactive UI where details about each learning object can be seen upon clicking the elements on the map. This idea can be adopted simiarly for any progression based system and learning progression is one of the aspect we try to address here
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Tech Stack 
+- ReactJS : Frontend 
+- Plotly.js and react-plotly : Plots and visualisation
+- tailwind-css
 
-## Available Scripts
+Do note that this is migration from Learning-Map-Dash-Portal of which the code can be found [here](https://github.com/WSL-IIITB/Learning-Map-Dash-Portal/tree/mvp1). 
 
-In the project directory, you can run:
+# Environment setup
+- Clone this github repository
+- Head inside the repository
+- Run the command 
+    ```sh
+    npm i
+    ```
+- After all dependencies have been install, to run on localhost, run the command: 
+   ```sh
+    npm run start
+    ```
+# File Structure 
+It follows a typical React.js based tree structure where all the UI is divided into pages, followed by Componenets residing in each page. Moving into the ``` src ``` folder, all pages' source code can be found in ``` Pages ``` folder which cosists of 2 pages in form of .jsx and the related components in a folder named ``` Componenets ```. Anyone with prior experience in React should be able to figure out the folder structure easily. Lastly inside ``` src ``` there is also a folder called ``` data ``` which consist of the backend logic in ``` api.js ``` as well as json files for various learning entity obtained by the work of other teams responsible for processing polyline information. 
 
-### `npm start`
+# A reference for understanding the backend code
+Inside ``` ./src/data/api.js ```
+- Initially the code consists of all learning_objects container which is needed to persist for the UI 
+- loadResourceData() as the name suggest for a subject populates the data structures with resource data into usable data by the UI in the containers defined above 
+- loadLearnerContribution() stores the learners to their contribution mapping 
+- loadTopicNames() loads the topic names from polyline json file which will be used as markers on the plotly.js plots
+- getTop3(): computes the top 3 competencies of a learning entity and returns them in a list to be used in the UI. 
+- Finally loadLearnerData() is intuitive as its sounds and do a similar function as Resource loader. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Test Deployment 
+A version of the Navigated Learning platform is deployed over [172.16.201.162](https://172.16.201.162) locally on a test server which can be accessed on IIITB premises.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
