@@ -50,6 +50,15 @@ const Navbar = (props) => {
             onChange={handleChange}
           ></input>
         </label>
+        <label>
+          Topics
+          <input
+            type="checkbox"
+            name="option"
+            value="topic"
+            onChange={handleChange}
+          ></input>
+        </label>
       </ul>
       <select
         onChange={props.courseHandler}

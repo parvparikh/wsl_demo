@@ -1,11 +1,12 @@
 // Backend logic/ Business logic needed by UI elements 
 import * as NSWlearnerdata from "./parsed_learner.json"
 import * as NSWresourceData from "./resource.json"
-import * as resourceNameNSW from "./LearningObjects.json"
+import * as resourceNameNSW from "./LearningObjects1_nsw.json"
 import * as MLlearnerdata from "./learners1.json"
 import * as MLresourceData from "./resources1.json"
-import * as resourceNameML from "./LearningObjects_ML.json"
+import * as resourceNameML from "./LearningObjects1_ml.json"
 import * as learnerContributionNSW from './learner_contribution.json'
+// import * as resourceNameML from "./topic1.json"
 // import * as resourceNameML from "./topic1.json"
 let data = [];
 //selecting a subject from the list 
@@ -51,7 +52,10 @@ export let learners_id = []
 export let topic_names = new Map();
 export let learner_icon = [] ; 
 
-//A reset function which clears all the containers, useful for loading different course data on demand
+export let topic_icon = []
+export let topic_x = []
+export let topic_y = []
+
 export const cleanList = ()=>{
 resources = []
  learners_object = []; 
@@ -75,6 +79,9 @@ resources = []
  topic_names = new Map();
  learner_icon = [] ; 
   
+ topic_icon = [] ;
+ topic_x = [] ;
+ topic_y = [] ;
 
 }
 //Loads resource data from json and parse it into usuable UI objects 
@@ -121,7 +128,20 @@ export const loadLearnerContribution= async (subject)=>{
    
   
 }
+export const loadTopics = (subject)=>{
+  console.log(subject)
+  let file = selectSubject[subject][2];
+  
+   data = JSON.stringify(file)
+   let t = JSON.parse(data)   
+    learners_object= Object.values(t)
+    learners_object.forEach(rname=>{
+      topic_icon.push("🎯")
+      topic_x.push(rname["ld"][0])
+      topic_y.push(rname["ld"][1])
+    })
 
+}
 //Topic Names for a course which act as a label for various plots. 
 export const loadTopicNames = (subject) =>{
   console.log(subject)
@@ -132,6 +152,7 @@ export const loadTopicNames = (subject) =>{
     learners_object= Object.values(t)
     learners_object.forEach(rname=>{
       topic_names.set(rname.topic_id,rname.name);
+    
     })
 
     let topic_names2 = [...topic_names.entries()].sort(function(a,b){
@@ -139,12 +160,7 @@ export const loadTopicNames = (subject) =>{
     }); 
  
     topic_names = new Map(topic_names2);
-    
-
 }
-//Simple algorithm to obtain top 3 competenceies from any polyline data 
-//Arrange values by polyline data and map it to the topics names and 
-//  return a list of top 3 competencies of a learning object 
 export const getTop3 = (resource,subject) =>{
     loadTopicNames(subject)
     let temp = [];

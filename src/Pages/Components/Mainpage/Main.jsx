@@ -24,6 +24,7 @@ const Main = (props) => {
         api.loadLearnerData(props.course),
         api.loadResourceData(props.course),
         api.loadLearnerContribution(props.course),
+        api.loadTopics(props.course),
       ]);
       // api.learnerResourceMapping(props.course);
     }
@@ -98,7 +99,17 @@ const Main = (props) => {
       size: 18,
     },
   };
-
+  let topic_plot = {
+    x: api.topic_x,
+    y: api.topic_y,
+    type: "scatter",
+    mode: "text",
+    text: api.topic_icon,
+    name: api.topic_names,
+    textfont: {
+      size: 25,
+    },
+  };
   let start_point = {
     x: [0],
     y: [0],
@@ -152,6 +163,9 @@ const Main = (props) => {
     if (props.type[i] === "resource") {
       data.push(resource_plot);
       a2 = annots_resource;
+    }
+    if (props.type[i] === "topic") {
+      data.push(topic_plot);
     }
     if (props.type[i] === "learner_contribution") {
       data.push(learner_contribution_plot);
@@ -270,7 +284,12 @@ const Main = (props) => {
             setLearner_x(null);
             setLearner_y(null);
           }
-
+          if (data.points[0].text === "🎯") {
+            send_resource = api.learners_object;
+            send_type = "topic";
+            // setLearner_x(null);
+            // setLearner_y(null);
+          }
           props.handler(
             data.points[0].x,
             data.points[0].y,

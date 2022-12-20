@@ -1,0 +1,134 @@
+[
+	{
+		"contri_summary": "This means, the more the number of features, the lower is the error (MSE).\nWhen I took all 6 features, MSE was 0.244.",
+		"contri_type": "pdf",
+		"contri_name": "L1_MLReport",
+		"polyline": {
+			"0": 0.5723558068275452,
+			"1": 0.4003031551837921,
+			"2": 0.4324425458908081,
+			"3": 0.6044505834579468,
+			"4": 0.576088011264801,
+			"5": 0.368397980928421
+		},
+		"ld": [0.24505037156113588, 0.25494962843886415]
+	},
+	{
+		"contri_summary": "The feature column values were out of scale (all were not in scale), hence we standardised all the columns of the original data frame.\\\\n\\\\nInformation about the code\\\\nIn the notebook, plots of the original data frame as well as of the predicted values are being made.\nThe value of the random\\\\nseed defined the errors slightly, so have to take care of that also.\\\\n\\\\nTest errors\\\\nMultivariate\\\\nClosed Form\\\\nY1: MSE: 0.08 MAE: 0.198 ARE: 37.56\\\\nY2: MSE: 0.1112 MAE: 0.22 ARE: 31.65\\\\nGradient Descent:\\\\nY1: MSE: 0.09 MAE: 0.22 ARE: 44.82\\\\nY2: MSE: 0.15 MAE: 0.27 ARE: 106.26\\\\nUnivariate\\\\nClosed Form: MSE: 0.207 MAE: 0.32 ARE: 135.1 Gradient Descent: MSE: 0.202 MAE: 0.99 ARE: 61.79\\\\n\\\\n\\\\nClassification\\\\nAnalysis of Data\\\\nThe dataset consists of different information about abalones.\nWe also one hot encoded the \\\\xe2\\\\x80\\\\x98Sex\\\\xe2\\\\x80\\\\x99 column.\\\\n\\\\nInformation about the code\\\\nIn the na\\\\xc3\\\\xafve bayes approach, we have dropped the highly corelated columns using the covariance matrix.\nIn the na\\\\xc3\\\\xafve bayes approach, some rows have only one value as their class or have same class only.\nThe classes being 20 are awarded as 1 and not 20 are 0 in the univariate approach (both na\\\\xc3\\\\xafve bayes and logistic\\\\nregression).\nGradient descent is carried out to optimise the accuracy in logistic models.\\\\n\\\\nChallenges Encountered\\\\nThe multivariate versions of logistic regression and na\\\\xc3\\\\xafve bayes were challenging as we have to deal with multiple class and have to find the optimum weight matrix or equivalent for all the classes.\\\\n\\\\nAccuracy\\\\nNaive Bayes:\\\\nUnivariate: 99.28 percent\\\\nMultivariate: 23.38 percent\\\\nLogistic Regression (by gradient decent)\\\\nUnivariate: 99.281 percent\\\\nMultivariate: 18.32 percent\\\\n'\"]",
+		"contri_type": "pdf",
+		"contri_name": "L2_MachineLearningAssignment",
+		"polyline": {
+			"0": 0.3492793142795563,
+			"1": 0.3776973485946655,
+			"2": 0.48340296745300293,
+			"3": 0.5261101722717285,
+			"4": 0.46642374992370605,
+			"5": 0.5068722367286682
+		},
+		"ld": [0.22129387566957223, 0.22870612433042778]
+	},
+	{
+		"contri_summary": [
+			"L3_Diamonds",
+			"b'1) ANALYSIS OF DATA\\nPreliminary Dataset Analysis: The regression dataset \\xe2\\x80\\x9cdiamonds.csv\\xe2\\x80\\x9d . There are no NULL values or duplicates in the data.\\na) Scrutinized database columns\\nb) Checked alpha numeric values and converting it using label encoder\\n\\n2) PRE-PROCESSING STEPS\\na) Understood the data using the below graphs\\ni) Cat plot\\nii) Sub plot\\niii) Box plot\\niv) Violin plot\\nb) Correlation through heat map\\nc) Normalized the data\\n\\n3) CODE APPROACHES\\na) Splitted the whole data into test and train\\nb) Coded linear regression\\nc) Used gradient descent formula and calculated\\ngraphs\\n\\n4) Test results\\na) Testing accuracy for multivariate gaussian\\nTesting accuracy\\nLoss fn mean squared error value :[[0.03129639]]\\nTraining accuracy\\nLoss fn mean squared error value : [[0.0329716]]\\nb) Testing accuracy for univariate gaussian\\ni) CARAT vs PRICE\\nLoss fn mean squared error value : [[ 0.03129639 ]]\\nloss function root mean squared error : [[ 0.0329716 ]]\\nii)\\nCUT vs DEPTH\\nLoss fn mean squared error value : [[ 0.0314905]]\\nloss function mean squared error : [[1.28310969e+164]]\\n\\nConclusion\\nThe models designed were tested with the sklearn models to compare the results obtained. The results obtained were either same or very close which leads to believe that the algorithm is working just as intended. Also, it was observed that Logistic Regression with Gradient Descent took the longest to run and could not reach the same level of accuracy as other method.\\n\\n\\nClassification:F1 Score\\n\\n1) ANALYSIS OF DATA\\nThe classification dataset \\xe2\\x80\\x9ctitanic.csv\\xe2\\x80\\x9d\\na) Scrutinized database columns\\nb) Checked alpha numeric values and converting it using label encoder\\n\\n2) PRE-PROCESSING STEPS\\na) Understood the data using the below graphs\\ni) Cat plot\\nii) Sub plot\\niii) Box plot\\niv) Violin plot\\nb) Correlation through heat map\\n\\n3) CODE APPROACHES\\na) Splitted the whole data into test and train\\nb) Coded logistic regression and na\\xc3\\xafve bayes\\n4) Test results\\n Logistic Regression\\nAccuracy: 0.6805555555555556\\nprecision Score: 0.6511627906976745\\n\\nRecall Score: 0.7777777777777778\\nF1 Score: 0.7088607594936709\\nNa\\xc3\\xafve bayes theorm\\nAccuracy: 0.75\\nprecision Score: 0.7727272727272727\\nRecall Score: 0.7083333333333334\\nF1 Score: 0.7391304347826088\\n\\nCONCLUSION\\nWe have implemented logistic regression and na\\xc3\\xafve bayes on\\ntitanic dataset where we get accuracy of 68% in logistic regression\\nand 75 %in na\\xc3\\xafve baiyes\\nc) Normalized the data\\n'"
+		],
+		"contri_type": "pdf",
+		"contri_name": "L3_Diamonds",
+		"polyline": {
+			"0": 0.46740666031837463,
+			"1": 0.4516257643699646,
+			"2": 0.5566151142120361,
+			"3": 0.5523146390914917,
+			"4": 0.6281498074531555,
+			"5": 0.5114239454269409
+		},
+		"ld": [0.2408681873995917, 0.2591318126004083]
+	},
+	{
+		"contri_summary": "Which contains columns which affects the \\\\xe2\\\\x80\\\\x98Life expectancy\\\\xe2\\\\x80\\\\x99 in many Countries and it is also our target column.\\\\nAnalysis of Dataset:\\\\n\\\\xe2\\\\x80\\\\xa2 First need to make a data frame from the given csv file to work on python and rem_life is our data frame.\nWhich can be done by using rem_life.rename.\\\\n\\\\nAfter correcting the columns we need to look at the co-relation between the data, which tells us how one columns affect the other.\\\\nGiven below is the heatmap co-related matrix which gives how columns are related and we can see that Income and Schooling are the one\\\\xe2\\\\x80\\\\x99s which affects our outcome.\nIt also contains some outlier which we will deal later.\\\\nSince most of our data is ready now we can start buiding our model and we can also remove outlier as we will find them.\\\\n\\\\nGradient Descent(Multivariate) :\\\\nIn multivariate we need to pick many columns we take all columns which affects our target.\\\\nFor calculating the loss function we need to set out dependent and independent columns.\\\\nNow we need to add X0 which is all 1 to out existing X and theta must be set according to that also we need to split test and training data for checking our model.\nOur output will be containing some \\\\xe2\\\\x80\\\\x98nan\\\\xe2\\\\x80\\\\x99 values due to irregularity in data so we need to find those index and remove those \\\\xe2\\\\x80\\\\x98nan\\\\xe2\\\\x80\\\\x99 values in output as well as out test set.\\\\nFinall we use MSE and MAE method to calculate our predictions, 0 values means our model is perfect.\nBy making few changes we can feed our model with the above dataset.\\\\n\\\\nNormal/Closed Equation(Multivariate) :\\\\nIn Normal/closed form we need out independent and dependent variable to calculate theta which we can directly used to predict the output.\\\\nSample value of X after normalization in multivariate:\\\\n\\\\nSince in normal form if we get \\\\xe2\\\\x80\\\\x98nan\\\\xe2\\\\x80\\\\x99 in input then our ouput will also give \\\\xe2\\\\x80\\\\x98nan\\\\xe2\\\\x80\\\\x99 so we need to clean/remove all \\\\xe2\\\\x80\\\\x98nan\\\\xe2\\\\x80\\\\x99 from data, one thing we can do is replace all \\\\xe2\\\\x80\\\\x98nan\\\\xe2\\\\x80\\\\x99 values with the mean value.\nLines used for this is , this need to run for all test as well as training set :\\\\n\\\\nEqu. Of normal form\\\\nSo after setting the variable we can feed the data into model and our model gives this prediction.\\\\n\\\\n\\\\nNormal/Closed Equation(Univariate) :\\\\nIn univariate we will follow same model with some adjustment to our code and also to our X which is our independent variable.\\\\nAfter feeding to our model we can see there is \\\\xe2\\\\x80\\\\x98nan\\\\xe2\\\\x80\\\\x99 to our output we can remove those things by removing those columns or replacing them with mean.\nWe can als see how the outcome values are biased towards the one set.\\\\nSince after our data is normalize and target column is also split from the data we can feed the data into our model.\\\\n\\\\nGradient Descent(Multivariate) :\\\\n\\\\xe2\\\\x80\\\\xa2\\\\nIn the logistic gradient descent we need to find the sigmoid function first which is So after splitting the data for training and test, computing the loss function we can feed data to our model.\n\\\\nFrom the histo we can see that mostly columns follows the normal distribution except few like \\\\xe2\\\\x80\\\\x98skin thickness\\\\xe2\\\\x80\\\\x99 so we can drop these columns.\\\\nIn the naive bayes\\\\xe2\\\\x80\\\\x99s we need to calculate prior, Gaussian likelihood and then we can calculate posterior probability .\\\\nAfter feeding the data into model, following are the accuracy.\\\\n\\\\nNaive Baye\\\\xe2\\\\x80\\\\x99s(Univariate) :\\\\n\\\\xe2\\\\x80\\\\xa2 In univariate Naive Bayes we simply take glucose column remove all others and the new data into same model after spilliting into test and train.",
+		"contri_type": "pdf",
+		"contri_name": "L4_Machine Learning",
+		"polyline": {
+			"0": 0.6553661227226257,
+			"1": 0.48078906536102295,
+			"2": 0.614972710609436,
+			"3": 0.570406436920166,
+			"4": 0.5608417987823486,
+			"5": 0.6145851016044617
+		},
+		"ld": [0.2922491625711313, 0.25775083742886873]
+	},
+	{
+		"contri_summary": "Ionosphere Dataset\\\\nData Preprocessing and Data Analysis\\\\n\\\\xe2\\\\x97\\\\x8f There are no null values in the dataset\\\\n\\\\xe2\\\\x97\\\\x8f Also, all the columns are already scaled in the range of -1 to 1\\\\n\\\\xe2\\\\x97\\\\x8f Target columns has 2 values: \\\\xe2\\\\x80\\\\x98g\\\\xe2\\\\x80\\\\x99 and \\\\xe2\\\\x80\\\\x98b\\\\xe2\\\\x80\\\\x99\\\\n\\\\xe2\\\\x97\\\\x8f Count for \\\\xe2\\\\x80\\\\x98g\\\\xe2\\\\x80\\\\x99 and \\\\xe2\\\\x80\\\\x98b\\\\xe2\\\\x80\\\\x99 categories are 225 and 126 respectively\\\\n\\\\xe2\\\\x97\\\\x8f Label encoded \\\\xe2\\\\x80\\\\x98g\\\\xe2\\\\x80\\\\x99 with 0 and \\\\xe2\\\\x80\\\\x98b\\\\xe2\\\\x80\\\\x99 with 1 for classification\\\\nNaive Bayes:\\\\nFor analysing the suitability of the feature columns which yields better predictions, I trained the Naive Bayes model with with different combinations of columns in the training dataset.",
+		"contri_type": "pdf",
+		"contri_name": "L5_Assignment1",
+		"polyline": {
+			"0": 0.5742319822311401,
+			"1": 0.5765700936317444,
+			"2": 0.6661627888679504,
+			"3": 0.6706738471984863,
+			"4": 0.5531952977180481,
+			"5": 0.7488014698028564
+		},
+		"ld": [0.27645290210328244, 0.32354709789671754]
+	},
+	{
+		"contri_summary": "['L6_ML1', \"b'Regression\\\\n\\\\nImplemented model using Linear Regression -\\\\nCO2_Emissions_Canada.csv\\\\nPreprocessing ->\\\\na.\n\\\\xe2\\\\x80\\\\x98Fuel Consumption City (L/100 km)\\\\xe2\\\\x80\\\\x99 had the maximum\\\\ncorrelation = 0.918748.\\\\n\\\\nh.\nGradient Descent Linear Regression\\\\n2.\nLogistic Regression \\\\xe2\\\\x86\\\\x92 heart.csv\\\\nImporting libraries\\\\nImporting dataset\\\\nChecking Null values and Removing duplicate rows\\\\nShuffling the dataset\\\\nSplitting training and test dataset\\\\nImplemented Sigmoid Function\\\\nImplemented Gradient Ascent\\\\n\\\\n2.\nNaive Bayes - Gaussian \\\\xe2\\\\x86\\\\x92\\\\n1.",
+		"contri_type": "pdf",
+		"contri_name": "L6_ML1",
+		"polyline": {
+			"0": 0.522991418838501,
+			"1": 0.4543800950050354,
+			"2": 0.5846442580223083,
+			"3": 0.6248031854629517,
+			"4": 0.5920462012290955,
+			"5": 0.5575078725814819
+		},
+		"ld": [0.26959084577889225, 0.2804091542211078]
+	},
+	{
+		"contri_summary": [
+			"L7_Machine_Learning",
+			"b'Details of the preprocessing, analysis, visualization, and model training are mentioned in the\\nrespective ipynb file.\\nLinear Regression Model Results:\\nMethod Features Training RMSE Testing RMSE\\nClosed Form Univariate 1.3478 1.5211\\nMultivariate 1.3827 1.7235\\nUnivariate 1.3745 1.5504\\nMultivariate 1.3402 1.5236\\n\\nClassification Model Results\\nModel\\nLogistic Regression Naive Bayes Training Results Testing Results Training Results Testing Results\\nPrecision 0.9173 0.9111 0.9046 0.9112\\nRecall 0.9305 0.9131 0.9319 0.9417\\nAccuracy 0.9147 0.9017 0.9074 0.9161\\nF1 Score 0.9238 0.9121 0.9180 0.9262\\nTrue Positive 4005 1692 4011 1745\\nTrue Negative 3073 1299 3011 1294\\nFalse Positive 361 165 423 170\\nFalse Negative 299 161 293 108\\n'"
+		],
+		"contri_type": "pdf",
+		"contri_name": "L7_Machine_Learning",
+		"polyline": {
+			"0": 0.6680854558944702,
+			"1": 0.5042258501052856,
+			"2": 0.664203405380249,
+			"3": 0.5539319515228271,
+			"4": 0.642288863658905,
+			"5": 0.6218770742416382
+		},
+		"ld": [0.30890934211106547, 0.2910906578889345]
+	},
+	{
+		"contri_summary": "After preprocessing , we will train the model for multivariate linear regression using gradient descent.\\\\ncost=(1/(2*m))*np.sum(np.square(y_pred - Y))\\\\nd_theta=(1/m)*np.dot(X.T, y_pred - Y)       \\\\ntheta = theta - learning_rate*d_theta      #updating the theta\\\\n\\\\n    2.\nWe train the model for multivariate linear regression using gradient descent.\\\\ncost=(1/(2*m))*np.sum(np.square(y_pred - Y))\\\\nd_theta=(1/m)*np.dot(X.T, y_pred - Y)       \\\\ntheta = theta - learning_rate*d_theta   \\\\n\\\\n    4.\nWe  train the model for multivariate linear regression using closed form for selected column\\\\ntheta = np.dot(np.dot(np.linalg.inv(np.dot(X.T, X)), X.T), Y)  \\\\n#final weight equation on closed form\\\\n\\\\nAfter all these four steps we will find mean square error and root mean square.\\\\n\\\\nLinear Regression\\\\n\\\\nMean Square Error\\\\nRoot mean square error\\\\nLearning rate\\\\niterations\\\\n    1.\nUnivariate linear regression using closed form\\\\n0.0484\\\\n0.2200\\\\n\\\\xe2\\\\x80\\\\x94----------\\\\n\\\\xe2\\\\x80\\\\x94------\\\\n\\\\n\\\\nAnalysis of Data:- \\\\n\\\\nFigure shows the correlation all the columns\\\\n\\\\nResult:-\\\\nThe number of iterations used  were 25000 and the learning rate was 0.0000000005.\\\\n\\\\n\\\\nResult of the multivariate linear regression model using Gradient descent\\\\n\\\\n\\\\n# Multivariate Linear regression using Gradient Descent\\\\nRoot Mean square error is  0.2186961822667192.\\\\n\\\\n#Multivariate Linear Regression using Closed form\\\\nRoot Mean square error is  0.2154999312346054\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\nPart B : Classification problem to predict a phishing website\\\\n\\\\nDataset \\\\n\\\\nThis dataset \\\\xe2\\\\x80\\\\x9c\"phishing websites classification.csv\" has 11055 rows and 31 columns.There are no NULL values and duplicates are removed in the data.\nSplitting the data into Train and test data and convert them into numpy array.\\\\n\\\\n\\\\nImplementing Logistic Regression\\\\n#Cost function=-(1/m)*np.sum(Y*np.log(A)+(1-Y)*np.log(1-A))\\\\n#Gradient_Descent\\\\n#dW=(dcost_function/dW)=(A-Y)*(X.T)\\\\n#dB=(dcost_function/dB)=(A-Y)\\\\n\\\\n#updating the weights\\\\n#Wnew=Wold-learning_rate*(dW.T)\\\\n#Bnew=Bold-learning_rate*(dB)\\\\n\\\\n#predicting the final value using sigmoid function\\\\n\\\\nResult:-\\\\nLogistic Regression\\\\n\\\\nAccuracy\\\\nPrecision\\\\nRecall\\\\nF1 Score\\\\nUsing all columns\\\\n91.36 %\\\\n0.9061 \\\\n0.9458\\\\n0.9255\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\nImplementing Naive Bayes\\\\n In naive bayes we first calculate the prior probabilities by first counting the unique values in the output column.",
+		"contri_type": "pdf",
+		"contri_name": "L8_Assgnmt1",
+		"polyline": {
+			"0": 0.48728710412979126,
+			"1": 0.4367492198944092,
+			"2": 0.44421571493148804,
+			"3": 0.5218566060066223,
+			"4": 0.5074856281280518,
+			"5": 0.3887135088443756
+		},
+		"ld": [0.22116590492078964, 0.22883409507921038]
+	},
+	{
+		"contri_summary": "['L9_MachineLearning', 'b\\'Dataset 1 \\\\xe2\\\\x80\\\\x93 Paris Housing Classification\\\\nGiven the Houses in Paris, predict the quality of house if it is Luxury or Basic.\\\\nAnalysing the Data:-\\\\nLet\\\\xe2\\\\x80\\\\x99s analyse the dataset given, we can see 18 columns from which last columns is output y which is categorical that is its either \\\\xe2\\\\x80\\\\x9cLuxury\\\\xe2\\\\x80\\\\x9d or \\\\xe2\\\\x80\\\\x9cBasic\\\\xe2\\\\x80\\\\x9d, all other columns are features of the dataset.\n(Plots in code) Now let\\\\xe2\\\\x80\\\\x99s see correlation of the dataset to analyse the relation between the features and output.As we can see from correlation values that \"hasPool\",\"isNewBuilt\" and \"hasYard\" has highest correlation with category.\nI have taken 75% of training and 25% for testing the model.\\\\n\\\\nFunction to Normalize:-\\\\nI have used Min-Max scalar to normalize the features.Splitting the training data set into two parts, one having all features and other\\\\nhaving just the output values.\n\\\\n\\\\nUnivariate:-\\\\nTried on feature 3 as it is having one of the highest correlation value with\\\\nOutput.\\\\nAccuracy:- 87.84\\\\nF1 score:-0.935\\\\nMultivariate:-\\\\nAccuracy:-99.8\\\\nF1 score:- 0.998\\\\nNa\\\\xc3\\\\xafve Bayes:-\\\\nHere we can use gaussian or Bernoulli model but as some features are not in binary form so I used Gaussian distribution for this model.\\\\nFor Gaussian model, we just have to compare the Probability of feature given a class*Probability of that class with different class for the prediction of the testing data.Gaussian distribution function:- Returns the Gaussian distribution given the features, mean and variance of the particular class.\n\\\\n\\\\nUnivariate Gaussian:-\\\\nTried on feature 3 as it is having one of the highest correlation value with Output.\\\\nAccuracy:- 87.44\\\\nF1 score:-0.932\\\\nObservations:-\\\\n\\\\xe2\\\\x9e\\\\xa2 We can see that variance of 3 features are zero.\n\\\\xe2\\\\x9e\\\\xa2 Also we see from the plots of all features with output variable that the dataset is not fit for gaussian distribution, also the dataset contains very\\\\nless values of Luxury and very large values Basic which in turn makes the probability of luxury very less than the Basic.\nisNewBuilt and hasPool has very less correlation value so we can take both of them for this method.\\\\nDataset 2 \\\\xe2\\\\x80\\\\x93 Real estate valuation dataset Given information about a house, predict its price.\\\\n\\\\nAnalysing the Data:-\\\\nLet\\\\xe2\\\\x80\\\\x99s analyse the dataset given, we can see 8 columns from which last columns is output y price, all other columns are features of the dataset.\nNow let\\\\xe2\\\\x80\\\\x99s see correlation of the dataset to analyse the relation between the features and output.We can see that output y has high correlation with column \\\\xe2\\\\x80\\\\x9cX3 distance to the nearest MRT station\\\\xe2\\\\x80\\\\x9d.\n\\\\xe2\\\\x9e\\\\xa2 to_numpy() is used here which will be helpful for different operations in\\\\nfuture like matrix multiplications.Linear Regression:-\\\\nFor linear regression model, we want the line to fit best with output value y given the features x.\nFeature 3:-\\\\nErrors-\\\\nClosed Form - Training data\\\\nMean Absolute error = 0.060259296311674294\\\\nMean Square error = 0.007978097517281018\\\\nClosed Form - Testing data\\\\nMean Absolute error = 0.1975232026506944\\\\nMean Square error = 0.06228819180082731\\\\nGradient descent - Training data\\\\nMean Absolute error = 0.060259296311658106\\\\nMean Square error = 0.007978097517281018Gradient descent - Testing data\\\\nMean Absolute error = 0.19752320265079085\\\\nMean Square error = 0.0622881918008862\\\\nWe can see in the graph how the line fits through the graph for both methods.\\\\nMultivariate:-\\\\nLet\\\\xe2\\\\x80\\\\x99s take all features for now to see the errors.\\\\nClosed Form - Training data\\\\nMean Absolute error = 0.06188081674638222\\\\nMean Square error = 0.008016872105060625\\\\nClosed Form - Testing data\\\\nMean Absolute error = 0.18590829836169714\\\\nMean Square error = 0.055153944186351556\\\\nGradient descent - Training data\\\\nMean Absolute error = 0.061880899067539824\\\\nMean Square error = 0.008016872112947175\\\\nGradient descent - Testing data\\\\nMean Absolute error = 0.18590927516582886\\\\nMean Square error = 0.055154520754117024\\\\nNow Let\\\\xe2\\\\x80\\\\x99s see which features will be effective to take for better results.\\\\nLet\\\\xe2\\\\x80\\\\x99s go back to the correlation dataset, here we see that feature 3,4,5 and 6 has high values of correlation with output value y so it will be optimal to take these features and drop others.",
+		"contri_type": "pdf",
+		"contri_name": "L9_MachineLearning",
+		"polyline": {
+			"0": 0.5214171409606934,
+			"1": 0.4478784203529358,
+			"2": 0.4729003310203552,
+			"3": 0.49720850586891174,
+			"4": 0.548189640045166,
+			"5": 0.4533218741416931
+		},
+		"ld": [0.2511547151655039, 0.24884528483449608]
+	}
+]
