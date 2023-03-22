@@ -5,13 +5,20 @@ import * as api from "../../../data/api.js";
 const Main = (props) => {
   let data = [];
   let a1 = [],
-    a2 = [];
+    a2 = [],
+    a3 = [];
   let lc_plot = [];
   let filename = [],
+    path = [],
     x = [],
     y = [],
     text = [],
     name = [];
+  let path_pnt = [];
+  let path_x1 = [];
+  let path_y1 = [];
+  let path_x2 = [];
+  let path_y2 = [];
   const [learner_x, setLearner_x] = useState(null);
   const [learner_y, setLearner_y] = useState(null);
 
@@ -25,12 +32,16 @@ const Main = (props) => {
         api.loadResourceData(props.course),
         api.loadLearnerContribution(props.course),
         api.loadTopics(props.course),
+        //api.loadPathwayData(props.course),
+        
       ]);
       // api.learnerResourceMapping(props.course);
+      
     }
     // Execute the created function directly
     initialise();
   }, [data, props.course]);
+  //console.log(api)
   // console.log(api.NSWlearner_contribution);
   // console.log("ML learner data", api.MLlearner_x);
   let learner_plot = {
@@ -76,6 +87,7 @@ const Main = (props) => {
     textfont: {
       size: 18,
     },
+    pathway: api.resource_pathway,
   };
   let learner_contribution_plot = {
     x: api.lc_x,
@@ -99,6 +111,10 @@ const Main = (props) => {
       size: 18,
     },
   };
+  let annots_learner = [],
+    annots_resource = [],
+    annots_topic =[];
+
   let topic_plot = {
     x: api.topic_x,
     y: api.topic_y,
@@ -110,6 +126,19 @@ const Main = (props) => {
       size: 25,
     },
   };
+  //console.log("hi",api.topic_names.get('0'))
+  for(let i=0;i<api.topic_names.size-1;i++)
+  {
+      annots_topic.push({
+        x: api.topic_x[i],
+        y: api.topic_y[i]-0.02,
+        text: api.topic_names.get(i.toString()),
+        font: { size: 16, color: 'black' },
+        //bgcolor: "green",
+        showarrow: false,
+      })
+}
+
   let start_point = {
     x: [0],
     y: [0],
@@ -130,9 +159,14 @@ const Main = (props) => {
       size: 18,
     },
   };
+
+  console.log("topics",api.topic_names)
+  // Random annotations for represenatational purpose 
   let annots = [];
-  let annots_learner = [],
-    annots_resource = [];
+  
+    
+
+    
   for (let i = 0; i < 5; i++) {
     let pos = Math.floor(Math.random() * learner_plot.x.length);
     annots_learner.push({
@@ -154,7 +188,92 @@ const Main = (props) => {
       showarrow: false,
     });
   }
-  console.log(props.type);
+
+  for(let i=0;i<api.rpath.length;i++)
+  {
+    path_pnt[i] = api.rpath[i]
+  }
+
+  let path_id = [] 
+  let resource_pathplot = []
+  for(let q=0;q<api.rpath.length;q++)
+  {
+    path_x1 = []
+      path_y1 = []
+      path_id = []
+    if(path_pnt[q])
+    {
+      let k=0 
+      let p=0
+      
+    while(path_pnt[q][k])
+    {
+      
+      for(let j=0;j<api.resource_id.length-1;j++)
+      {
+        
+        if(api.resource_id[j] === path_pnt[q][k])
+        {
+            path_id.push(api.resource_id[j])
+            path_x1.push(api.resource_x[j])
+            path_y1.push(api.resource_y[j])
+            ++k;        
+        }
+        
+      }
+    }
+    //path_x1.push(path_x1[0])
+    //path_y1.push(path_y1[0])
+    console.log(path_x1)
+    console.log(path_y1)
+    
+    // for(p=0;p<path_x1.length-1;p++)
+    // {
+    resource_pathplot[q] = {
+        x: path_x1,
+        y: path_y1,
+        type: "scatter",
+        //fill: 'tonexty',
+        mode: "lines+markers",
+        line: {
+          shape: "spline",
+          smoothing: 1.3,
+          width: 3,  
+        },
+        marker: {
+          symbol: 20,
+          size: 15,
+          angleref: 'previous'
+        },
+      }
+      data.push(resource_pathplot)
+    
+      
+      
+      // annots_rpaths.push({
+      //   x: path_x1[p],
+      //   y: path_y1[p],
+      //   text: p+1,
+      //   font: { size: 16, color: 'black' },
+      //   bgcolor: "green",
+      //   showarrow: false,
+      // });
+    //}
+    // annots_rpaths.push({
+    //   x: path_x1[p],
+    //   y: path_y1[p],
+    //   text: p+1,
+    //   font: { size: 16, color: 'black' },
+    //   bgcolor: "green",
+    //   showarrow: false,
+    // });
+    }
+  }
+  
+  
+
+  // Actually plotting what you see
+  //console.log(props.type);
   for (let i = 0; i < props.type.length; i++) {
     if (props.type[i] === "learner") {
       data.push(learner_plot);
@@ -166,13 +285,29 @@ const Main = (props) => {
     }
     if (props.type[i] === "topic") {
       data.push(topic_plot);
+      a3 = annots_topic;
     }
     if (props.type[i] === "learner_contribution") {
       data.push(learner_contribution_plot);
+       
+    }
+    //it works as wanted 
+    if (props.type[i] === "pathway") {
+      data.push(resource_plot);
+      for(let k=0;k<resource_pathplot.length;k++)
+      {
+        data.push(resource_pathplot[k])
+      }
+      //data.push(resource_pathplot);
       // a2 = annots_resource;
     }
   }
+
+
+
+  
   // data.push(learner_contribution_plot);
+  // following thing is mkaing the lines in the plot
   for (let i = 0; i < api.learner_x.length; i++) {
     if (api.learner_x[i] === learner_x && api.learner_y[i] === learner_y) {
       filename.push(api.learners_file_name[i]);
@@ -188,6 +323,8 @@ const Main = (props) => {
       }
     }
   }
+
+
 
   lc_plot = {
     x: x,
@@ -213,6 +350,7 @@ const Main = (props) => {
   };
   data.push(lc_plot);
 
+  //Drawing the line between the l and lc
   if (learner_x != null) {
     var line = {
       x: [learner_x, x[0]],
@@ -221,11 +359,58 @@ const Main = (props) => {
       line: {
         dash: "dot",
         width: 3,
+        color: "green"
       },
+     
     };
     data.push(line);
   }
+
+  // for (let i = 0; i < api.resource_pathway.length; i++) {
+  //   console.log("HI here",api.resource_pathway[i]);
+  //   if (api.resource_pathway[i]) {
+  //     console.log("HI here",api.resource_pathway[i]);
+  //    // path.push(api.learners_file_name[i]);
+  //   }
+  // }
+  
+
+
+  //THIS WORKS HERE (RPATH DATA ACCESSED)
+  
+  // WORKABLE EXMAPLE WORK LITTLE MORE
+  // for(let i=0;i<path_pnt.length;i++)
+  // {
+  //   let j=0 
+  //   while(path_pnt[i][j])
+  //   {
+      
+  //     j++
+  //   }
+
+  //   // let k=0
+  //   // for(let j=0;j<api.resource_id.length-1;j++)
+  //   // {
+      
+  //   //   if(api.resource_id[j] === path_pnt[0][k])
+  //   //   {
+  //   //       path_id.push(api.resource_id[j])
+  //   //       path_x1.push(api.resource_x[j])
+  //   //       path_y1.push(api.resource_y[j])
+  //   //       ++k;        
+  //   //   }
+      
+  //   // }
+  // }
+  
+
+  //console.log("pnt",[path_pnt,path_id,path_x1,path_y1])
   data.push(start_point);
+
+
+  
+  
+
   return (
     <div className="grow">
       <Plot
@@ -236,7 +421,7 @@ const Main = (props) => {
           paper_bgcolor: "D9D9D9",
           plot_bgcolor: "#FF65",
           orientation: "h",
-          annotations: a1.concat(a2),
+          annotations: (a1.concat(a2)).concat(a3),
           shapes: [
             {
               type: "line",
@@ -254,6 +439,7 @@ const Main = (props) => {
                 color: "rgb(128, 0, 128)",
                 width: 4,
                 dash: "dot",
+                //shape: "spline",
               },
             },
           ],
@@ -264,7 +450,7 @@ const Main = (props) => {
           console.log(data);
           let send_resource;
           let send_type;
-
+          
           if (data.points[0].text === "👤") {
             send_resource = api.learners;
             send_type = "learner";
@@ -301,7 +487,10 @@ const Main = (props) => {
           width: "100%",
           height: "100%",
         }}
+
+       
       />
+      
     </div>
   );
 };

@@ -48,6 +48,7 @@ const Mainpage = () => {
       <Heading course={course} />
       <Navbar handler={navHandler} courseHandler={courseHandler} />
       <div className="flex w-full h-full  justify-between">
+        
         <Main
           handler={handler}
           type={typeOfData}

@@ -49,7 +49,7 @@ const Sidebar = (props) => {
                 {props.data
                   ? props.type === "learner"
                     ? props.data["Learner Id"]
-                    : props.data["name"]
+                    : [props.data["id"]," ",props.data["name"]]
                   : "null"}
               </div>
             </li>
