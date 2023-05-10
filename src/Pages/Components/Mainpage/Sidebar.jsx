@@ -112,11 +112,11 @@ const Sidebar = (props) => {
                     <span className="text-sm  ml-2">Resource Description:</span>
                   </div>
                 </li>
-                <li className="mb-6">
+                {/* <li className="mb-6">
                   <div className="py-1 px-3 bg-white rounded text-black flex items-center justify-center text-xs">
                     {props.data ? props.data.resource_summary : "Null"}
                   </div>
-                </li>
+                </li> */}
                 <li className="flex w-full justify-between text-white  hover:text-gray-100 items-center mb-6">
                   <div className="flex items-center">
                     <svg

@@ -25,7 +25,7 @@ const Mainpage = () => {
   const handler = (x, y, resources, type) => {
     setHide("false");
     for (let i = 0; i < resources.length; i++) {
-      if (resources[i]["ld"]["x"] === x && resources[i]["ld"]["y"] === y) {
+      if (resources[i]["ld"][0] === x && resources[i]["ld"][1] === y) {
         setData(resources[i]);
         setTop3(getTop3(resources[i], course));
         setSideType(type);
@@ -53,6 +53,7 @@ const Mainpage = () => {
           handler={handler}
           type={typeOfData}
           className=""
+          top3={top3}
           course={course}
         />
         <div className="flex flex-col justify-center ">

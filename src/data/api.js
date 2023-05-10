@@ -1,12 +1,13 @@
 // Backend logic/ Business logic needed by UI elements 
 import * as NSWlearnerdata from "./parsed_learner.json"
-import * as NSWresourceData from "./resource.json"
+import * as NSWresourceData from "./new_resource.json"
 import * as resourceNameNSW from "./LearningObjects1_nsw.json"
 import * as MLlearnerdata from "./learners1.json"
 import * as MLresourceData from "./resources1.json"
 import * as resourceNameML from "./LearningObjects1_ml.json"
 import * as learnerContributionNSW from './learner_contribution.json'
 import * as NSWpathway from './nsw/nsw_pathway.json'
+import * as NSWterrain from './nsw/Terrain og.json'
 import { Collapse } from "react-bootstrap"
 
 // import * as resourceNameML from "./topic1.json"
@@ -15,7 +16,7 @@ let data = [];
 //selecting a subject from the list 
 const selectSubject = {
   //dictionary of form "Name of Course": [learnerData,resourceData,resourceNameMapping]
-  "Network Science for Web" : [NSWlearnerdata,NSWresourceData,resourceNameNSW,learnerContributionNSW,NSWpathway],
+  "Network Science for Web" : [NSWlearnerdata,NSWresourceData,resourceNameNSW,learnerContributionNSW,NSWpathway,NSWterrain],
   "Machine Learning" : [MLlearnerdata,MLresourceData,resourceNameML], 
   "Web and Mind":[],
 
@@ -63,6 +64,11 @@ export let topic_y = []
 export let resource_pathway = [] 
 export let rpath = []
 
+export let terrain = []
+export let Tname = []
+export let Tx = []
+export let Ty = []
+
 export const cleanList = ()=>{
 resources = []
  learners_object = []; 
@@ -93,6 +99,11 @@ resources = []
 
  resource_pathway = [] ;
  rpath = [];
+
+ terrain =[]
+ Tname = []
+ Tx = []
+ Ty = []
 }
 //Loads resource data from json and parse it into usuable UI objects 
 export const loadResourceData = async (subject)=>{
@@ -114,14 +125,32 @@ export const loadResourceData = async (subject)=>{
       rpath.push(t[i]["pathway"])
       i++
     }
+
+    let file2 = selectSubject[subject][5];
+    data = JSON.stringify(file2)
+    t = JSON.parse(data)   
+    terrain = Object.values(t)
+    let temp = Object.keys(terrain[0])
+    i=0
+    while(temp[i])
+    {
+      Tname.push(temp[i])
+      Tx.push(terrain[0][temp[i]]['x'])
+      Ty.push(terrain[0][temp[i]]['y'])
+      i++
+    }
+    // console.log("Tname",Tname)
+    // console.log("Tx",Tx)
+    // console.log("Ty",Ty)
+    
    
    //console.log("rr",t[0]["pathway"][0])
 
   resources.forEach(resource => {
     resource_icon.push("📄")
     resource_id.push(resource["id"])
-    resource_x.push(resource["ld"]["x"])
-    resource_y.push(resource["ld"]["y"])
+    resource_x.push(resource["ld"][0])
+    resource_y.push(resource["ld"][1])
     resources_polyline.push({ [resource["name"]]: resource["polyline"]})
     resources_name.push(resource["name"])
     resources_type.push([ resource["type"]])
@@ -209,17 +238,17 @@ export const getTop3 = (resource,subject) =>{
     t2.reverse(); 
   // need optimisation
   for (let i = 0; i < t2.length; i++) {
-    if (t3[i] == t2[0]) {
+    if (t3[i] === t2[0]) {
       temp.push(i);
     }
   }
   for (let i = 0; i <t2.length; i++) {
-    if (t3[i] == t2[1]) {
+    if (t3[i] === t2[1]) {
       temp.push(i);
     }
   }
   for (let i = 0; i < t2.length; i++) {
-    if (t3[i] == t2[2]) {
+    if (t3[i] === t2[2]) {
       temp.push(i);
     }
   }

@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import Plot from "react-plotly.js";
+import { kmeans } from 'ml-kmeans';
 import * as api from "../../../data/api.js";
+import { max } from "mathjs";
+
 const Main = (props) => {
   let data = [];
   let a1 = [],
@@ -41,7 +44,7 @@ const Main = (props) => {
     // Execute the created function directly
     initialise();
   }, [data, props.course]);
-  //console.log(api)
+  //console.log(api.resources_polyline)
   // console.log(api.NSWlearner_contribution);
   // console.log("ML learner data", api.MLlearner_x);
   let learner_plot = {
@@ -126,7 +129,113 @@ const Main = (props) => {
       size: 25,
     },
   };
-  //console.log("hi",api.topic_names.get('0'))
+//   //console.log("hi",api.topic_names.get('0'))
+  const cluster_array_x = [];
+  const cluster_array_y = [];
+  const cluster_array_polyline = [];
+  const cluster_array_id = [];
+  const k = 4;
+  const cntrs = [];
+  if(api.resource_x.length)
+  {
+  const resource_xy = [];
+
+  for (let i = 0; i < api.resource_x.length; i++) {
+    resource_xy.push([api.resource_x[i], api.resource_y[i]]);
+  }
+  
+  const { clusters, centroids } = kmeans(resource_xy,k);
+
+  
+  for(let j=0;j<k;j++)
+  {
+    const tempx = [];
+    const tempid = [];
+    const tempy = [];
+    const tempoly = [];
+    for (let i = 0; i < api.resource_x.length; i++) {
+      if(clusters[i] === j)
+      {
+        tempx.push(api.resource_x[i]);
+        tempy.push(api.resource_y[i]);
+        tempid.push(api.resource_id[i]);
+        const vals = api.resources_polyline[i]["name"];
+        const ids = Object.keys(vals);
+        let max = 0;
+        //console.log("hi")
+        for(let ite=0;ite<ids.length;ite++)
+        {
+          //console.log(vals[ite],vals[max])
+          if(vals[ite]>vals[max])
+          {
+            max=ite;
+          }
+        }
+        tempoly.push(max);
+        // vals.forEach(elems => {
+        //   if(elems. )
+        // })
+        //console.log("poly line :",j,i,max,vals[max],vals); 
+        //tempoli.push(api.resources_polyline)
+      }
+    }
+    cluster_array_x.push(tempx);
+    cluster_array_y.push(tempy);
+    cluster_array_id.push(tempid);
+    cluster_array_polyline.push(tempoly);
+  }
+
+
+  //console.log("cax ",cluster_array_x);
+  //console.log("cay ",cluster_array_y);
+  console.log("cluster array of max topic from polyline ",cluster_array_polyline);
+  
+  
+  for(let i=0;i<2;i++)
+  {
+    const temp=[];
+    for(let j=0;j<k;j++)
+    {
+    temp.push(centroids[j][i]);
+    }
+    cntrs.push(temp);
+  }
+
+  console.log("clusters: ",cluster_array_id);
+  }
+//clusters
+  const cluster_plot = [];
+  const colors = ["green","orange","blue","red","purple","pink","yellow"];
+for(let i=0;i<k;i++)
+{
+  cluster_plot[i] = {
+    x: cluster_array_x[i],
+    y: cluster_array_y[i],
+    type: "scatter",
+    mode: "markers",
+    marker: {
+      symbol: 20,
+      size: 15,
+      color: colors[i]
+    },
+  }
+}
+
+const centerplot = {
+    x: cntrs[0],
+    y: cntrs[1],
+    type: "scatter",
+    mode: "markers",
+    marker: {
+      symbol: 20,
+      size: 15,
+      color: "Black",
+      //shape: "circle"
+    },
+  }
+
+
+
   for(let i=0;i<api.topic_names.size-1;i++)
   {
       annots_topic.push({
@@ -160,7 +269,7 @@ const Main = (props) => {
     },
   };
 
-  console.log("topics",api.topic_names)
+  //console.log("topics",api.topic_names)
   // Random annotations for represenatational purpose 
   let annots = [];
   
@@ -193,7 +302,8 @@ const Main = (props) => {
   {
     path_pnt[i] = api.rpath[i]
   }
-
+  
+//pathways
   let path_id = [] 
   let resource_pathplot = []
   for(let q=0;q<api.rpath.length;q++)
@@ -205,10 +315,10 @@ const Main = (props) => {
     {
       let k=0 
       let p=0
-      
+    
     while(path_pnt[q][k])
     {
-      
+      //console.log("path ",path_pnt[p][k])
       for(let j=0;j<api.resource_id.length-1;j++)
       {
         
@@ -224,8 +334,8 @@ const Main = (props) => {
     }
     //path_x1.push(path_x1[0])
     //path_y1.push(path_y1[0])
-    console.log(path_x1)
-    console.log(path_y1)
+    //console.log(path_x1)
+    //console.log(path_y1)
     
     // for(p=0;p<path_x1.length-1;p++)
     // {
@@ -246,7 +356,7 @@ const Main = (props) => {
           angleref: 'previous'
         },
       }
-      data.push(resource_pathplot)
+      //data.push(resource_pathplot)
     
       
       
@@ -270,7 +380,62 @@ const Main = (props) => {
     }
   }
   
+  //Terrain plot
+  // console.log("Tname",api.Tname)
+  // console.log("Tx",api.Tx)
+  // console.log("Ty",api.Ty)
   
+  //console.log("Tname",api.Tname)
+  //console.log("Tx",api.Tx)
+  //console.log("Ty",api.Ty)
+  //this is for regualr
+  let terrain_plot = []
+  for(let i=0;i<api.Tname.length;i++)
+  {
+    api.Tx[i].shift()
+    api.Tx[i].pop()
+    api.Ty[i].shift()
+    api.Ty[i].pop()
+    terrain_plot[i] = {
+      x: api.Tx[i],
+      y: api.Ty[i],
+      type: "scatter",
+      //fill: 'tozeroy',
+      //tozeroy tonexty
+      mode: "markers"
+      // line: {
+      //   shape: "spline",
+      //   smoothing: 1.3,
+      //   width: 3,  
+      // }
+    }
+    //data.push(terrain_plot)
+  }
+
+
+  // // below is the demo for areas
+  // 
+  // for(let i=0;i<api.Tname.length;i++)
+  // {
+  //   // api.Tx[i].shift()
+  //   // api.Tx[i].pop()
+  //   // api.Ty[i].shift()
+  //   // api.Ty[i].pop()
+  //   terrain_plot[i] = {
+  //     x: api.Tx[i],
+  //     y: api.Ty[i],
+  //     type: "scatter",
+  //     fill: 'tozeroy',
+  //     //tozeroy tonexty
+  //     mode: "lines",
+  //     line: {
+  //       shape: "spline",
+  //       smoothing: 1.3,
+  //       width: 3,  
+  //     }
+  //   }
+  //   //data.push(terrain_plot)
+  // }
 
   // Actually plotting what you see
   //console.log(props.type);
@@ -281,10 +446,20 @@ const Main = (props) => {
     }
     if (props.type[i] === "resource") {
       data.push(resource_plot);
+      for(let i=0;i<k;i++)
+      {
+          data.push(cluster_plot[i]);
+      }
+      data.push(centerplot);
+      
       a2 = annots_resource;
     }
     if (props.type[i] === "topic") {
       data.push(topic_plot);
+      for(let k=0;k<api.Tname.length;k++)
+      {
+        data.push(terrain_plot[k])
+      }
       a3 = annots_topic;
     }
     if (props.type[i] === "learner_contribution") {
@@ -298,7 +473,7 @@ const Main = (props) => {
       {
         data.push(resource_pathplot[k])
       }
-      //data.push(resource_pathplot);
+      data.push(resource_pathplot);
       // a2 = annots_resource;
     }
   }
@@ -447,7 +622,7 @@ const Main = (props) => {
         useResizeHandler={true}
         config={{ responsive: true }}
         onClick={(data) => {
-          console.log(data);
+          //console.log(data);
           let send_resource;
           let send_type;
           
